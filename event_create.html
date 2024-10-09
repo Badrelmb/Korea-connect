@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Event</title>
+    <style>
+        /* Reset some default browser styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Center the form container */
+.event-create {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for headings */
+.event-create h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style form groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Style labels */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Style inputs and textareas */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus effect */
+input:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Style the submit button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for button */
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="event-create">
+        <h1>Create Event</h1>
+        <form action="event_create.php" method="POST">
+            <div class="form-group">
+                <label for="title">Event Title</label>
+                <input type="text" id="title" name="title" placeholder="Event Title" required />
+            </div>
+            <div class="form-group">
+                <label for="category">Hobby Category</label>
+                <input type="text" id="category" name="category" placeholder="Hobby Category" required />
+            </div>
+            <div class="form-group">
+                <label for="location">Event Location</label>
+                <input type="text" id="location" name="location" placeholder="Event Location" required />
+            </div>
+            <div class="form-group">
+                <label for="participants_limit">Max Participants</label>
+                <input type="number" id="participants_limit" name="participants_limit" placeholder="Max Participants" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <textarea id="description" name="description" placeholder="Event Description" required></textarea>
+            </div>
+            <button type="submit">Create Event</button>
+        </form>
+    </div>
+</body>
+</html>
