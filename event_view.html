@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Korea Connect</title>
+    <title>Event View - Korea Connect</title>
     <style>
-        /* Reset default browser styles */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
+            background-color: #f9f9f9; /* Light background color */
             overflow: hidden;
         }
 
-        /* Hero Section with Background Image */
         .hero-section {
             position: relative;
             width: 100%;
@@ -27,56 +26,33 @@
             align-items: center;
         }
 
-        /* Form container styling */
-        .form-container {
-            max-width: 400px;
+        /* Event container styling */
+        .event-container {
+            max-width: 500px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         /* Styling for headings */
-        .form-container h1 {
-            text-align: center;
+        .event-container h1 {
             color: #333;
+            margin-bottom: 10px;
         }
 
-        /* Style form groups */
-        .form-group {
+        /* Event details styling */
+        .event-details {
+            color: #555;
             margin-bottom: 15px;
         }
 
-        /* Style labels */
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        /* Style inputs */
-        input[type="text"],
-        input[type="password"] {
+        /* Register button styling */
+        .register-button {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-
-        /* Focus effect */
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        /* Style the submit button */
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            background-color: #007bff; /* Blue color */
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -86,27 +62,8 @@
         }
 
         /* Hover effect for button */
-        button:hover {
+        .register-button:hover {
             background-color: #0056b3;
-        }
-
-        /* Styling for KakaoTalk button */
-        #yellow {
-            background-color: #FEE500;
-            color: black;
-        }
-
-        /* Styling for link */
-        .form-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .form-container a:hover {
-            text-decoration: underline;
         }
 
         /* Style the header to match homepage */
@@ -152,27 +109,21 @@
                 <ul>
                     <li><a href="#" class="language-toggle">EN | KR</a></li>
                     <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
                 </ul>
             </nav>
         </header>
 
-        <!-- Login Form -->
-        <div class="form-container">
-            <h1>Login</h1>
-            <form action="login.php" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Username" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required />
-                </div>
-                <button type="submit">Login</button>
-                <br /><br />
-                <button id="yellow" type="submit">Login via KakaoTalk</button>
-            </form>
-            <a href="signup.html">Create new account</a>
+        <!-- Event Details -->
+        <div class="event-container">
+            <h1>Cultural Exchange Meetup</h1>
+            <p class="event-details">Date: October 20, 2024</p>
+            <p class="event-details">Time: 3:00 PM - 5:00 PM</p>
+            <p class="event-details">
+                Join us for an exciting cultural exchange meetup where you can connect with locals and expats through shared interests and activities. Engage in lively discussions, participate in cultural activities, and make new friends!
+            </p>
+            <p class="event-details">Location: Community Center, 123 Main Street, Seoul, South Korea</p>
+            <button class="register-button">Register Now</button>
         </div>
     </div>
 </body>

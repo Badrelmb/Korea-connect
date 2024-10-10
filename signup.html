@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Sign Up - Korea Connect</title>
     <style>
-        /* Reset some default browser styles */
-        body {
+        /* Reset default browser styles */
+        body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
         }
 
-        /* Center the form container */
+        /* Hero Section with Background Image */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url("/KOREA-CONNECT IMG/Animation-img.webp");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form container styling */
         .form-container {
             max-width: 500px;
-            margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -45,7 +58,8 @@
         /* Style inputs */
         input[type="text"],
         input[type="password"],
-        input[type="email"] {
+        input[type="email"],
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -55,7 +69,8 @@
         }
 
         /* Focus effect */
-        input:focus {
+        input:focus,
+        select:focus {
             border-color: #007bff;
             outline: none;
         }
@@ -77,32 +92,145 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        /* Styling for link */
+        .form-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style the header to match homepage */
+        #header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        #header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Additional styles for phone number input */
+        .phone-container {
+            display: flex;
+            align-items: center; /* Center the items vertically */
+        }
+
+        #country-code {
+            font-size: 0.8em; /* Smaller font size for country code */
+            width: 80px; /* Adjust width as needed */
+            margin-right: 10px; /* Space between country code and phone number */
+            border: 1px solid #ddd; /* Add border for better visibility */
+            border-radius: 4px; /* Rounded corners for a softer look */
+            padding: 5px; /* Add padding for spacing inside the dropdown */
+            appearance: none; /* Remove default styling on some browsers */
+        }
+
+        #phone {
+            flex: 1; /* Take remaining space */
+            font-size: 1em; /* Standard font size for phone number */
+            border: 1px solid #ddd; /* Add border for visibility */
+            border-radius: 4px; /* Rounded corners */
+            padding: 5px; /* Padding inside the input */
+        }
+
+        /* Add a focus effect for better accessibility */
+        #country-code:focus,
+        #phone:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Sign Up</h1>
-        <form action="signup.php" method="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Username" required />
+    <div class="hero-section">
+        <!-- Header with logo and navigation -->
+        <header id="header">
+            <div class="logo">
+                <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required />
-            </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required />
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
-        <a href="login.html">Login</a>
-      </div>
-    
+            <nav>
+                <ul>
+                    <li><a href="#" class="language-toggle">EN | KR</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Sign Up Form -->
+        <div class="form-container">
+            <h1>Sign Up</h1>
+            <form action="signup.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="phone-container">
+                        <select id="country-code" name="country-code">
+                            <option value="+1">+1 (USA)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+82">+82 (South Korea)</option>
+                            <option value="+977">+977 (Nepal)</option>
+                            <option value="+91">+91 (India)</option>
+                            <option value="+84">+84 (Vietnam)</option>
+                            <option value="+976">+976 (Mongolia)</option>
+                            <option value="+86">+86 (China)</option>
+                            <option value="+212">+212 (Morocco)</option>
+                            <option value="+998">+998 (Uzbekistan)</option>
+                            <option value="+7">+7 (Russia)</option>
+                            <option value="+92">+92 (Pakistan)</option>
+                            <option value="+880">+880 (Bangladesh)</option>
+                            <option value="+95">+95 (Myanmar)</option>
+                        </select>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required />
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required />
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
 </body>
 </html>
