@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Korea Connect</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
-        /* Reset default browser styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,7 +14,6 @@
             overflow: hidden;
         }
 
-        /* Hero Section with Background Image */
         .hero-section {
             position: relative;
             width: 100%;
@@ -27,27 +26,23 @@
             align-items: center;
         }
 
-        /* Form container styling */
         .form-container {
             max-width: 400px;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Styling for headings */
         .form-container h1 {
             text-align: center;
             color: #333;
         }
 
-        /* Style form groups */
         .form-group {
             margin-bottom: 15px;
         }
 
-        /* Style labels */
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -55,7 +50,6 @@
             color: #555;
         }
 
-        /* Style inputs */
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -66,13 +60,29 @@
             transition: border-color 0.3s ease;
         }
 
-        /* Focus effect */
         input:focus {
             border-color: #007bff;
             outline: none;
         }
+        #kakao-login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #FEE500;
+            color: #3C1E1E;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
 
-        /* Style the submit button */
+        #kakao-login-btn:hover {
+            background-color: #e5cc00; 
+        }
+
+
         button {
             width: 100%;
             padding: 10px;
@@ -85,18 +95,12 @@
             transition: background-color 0.3s ease;
         }
 
-        /* Hover effect for button */
+
         button:hover {
             background-color: #0056b3;
         }
 
-        /* Styling for KakaoTalk button */
-        #yellow {
-            background-color: #FEE500;
-            color: black;
-        }
 
-        /* Styling for link */
         .form-container a {
             display: block;
             text-align: center;
@@ -109,7 +113,6 @@
             text-decoration: underline;
         }
 
-        /* Style the header to match homepage */
         #header {
             position: absolute;
             top: 0;
@@ -136,14 +139,38 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #fff;
+            color: #003366;
             font-weight: bold;
         }
+        .login-btn,
+    .signup-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .login-btn {
+        background-color: #003366;
+    }
+
+    .signup-btn {
+        background-color: #6699cc;
+    }
+
+    .login-btn:hover {
+        background-color: #002244;
+    }
+
+    .signup-btn:hover {
+        background-color: #336699;
+    }
+        
     </style>
 </head>
 <body>
     <div class="hero-section">
-        <!-- Header with logo and navigation -->
         <header id="header">
             <div class="logo">
                 <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
@@ -155,8 +182,6 @@
                 </ul>
             </nav>
         </header>
-
-        <!-- Login Form -->
         <div class="form-container">
             <h1>Login</h1>
             <form action="login.php" method="POST">
@@ -170,7 +195,35 @@
                 </div>
                 <button type="submit">Login</button>
                 <br /><br />
-                <button id="yellow" type="submit">Login via KakaoTalk</button>
+            
+                <button id="kakao-login-btn">Login with KakaoTalk</button>
+
+                <script>
+                Kakao.init('YOUR_APP_KEY');
+
+                document.getElementById('kakao-login-btn').addEventListener('click', function() {
+                    Kakao.Auth.login({
+                    success: function(authObj) {
+                        console.log(authObj);
+                        Kakao.API.request({
+                        url: '/v2/user/me',
+                        success: function(res) {
+                            console.log(res);
+                            alert(`Welcome, ${res.kakao_account.profile.nickname}!`);
+                        },
+                        fail: function(error) {
+                            console.log(error);
+                            alert('Failed to get user info.');
+                        }
+                        });
+                    },
+                    fail: function(err) {
+                        console.log(err);
+                        alert('Failed to log in with Kakao.');
+                    }
+                    });
+                });
+                </script>
             </form>
             <a href="signup.html">Create new account</a>
         </div>
