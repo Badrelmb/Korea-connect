@@ -3,28 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile - KoreaConnect</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Profile - Korea Connect</title>
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #c0c392;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Cover Photo */
+        .cover-photo {
+            width: 100%;
+            height: 250px;
+            background-image: url('/path/to/cover-photo.jpg'); /* Replace with your cover photo URL */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Profile Picture */
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 150px;
+            width: 100%;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background-image: url('KOREA-CONNECT IMG/author.png'); /* Replace with your profile picture URL */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* User Info Section */
+        .user-info {
+            text-align: center;
+            color: #333;
+            margin-top: 90px;
+        }
+
+        .user-info h1 {
+            margin: 10px 0;
+        }
+
+        .user-info p {
+            color: #777;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .tabs a:hover {
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        /* Posts Section */
+        .posts-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .post {
+            width: 80%;
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post-header .username {
+            font-weight: bold;
+        }
+
+        .post-content {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Button Styles */
+        .post-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .post-button:hover {
+            background-color: #365899;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #777;
+            font-size: 14px;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <h1>KoreaConnect</h1>
-    </header>
-    <main>
-        <h2>Your Profile</h2>
-        <form id="profile-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-            <label for="hobbies">Hobbies:</label>
-            <input type="text" id="hobbies" required>
-            <label for="location">Location:</label>
-            <input type="text" id="location" required>
-            <button type="submit">Save Changes</button>
-        </form>
-    </main>
+
+    <!-- Header Section with Cover Photo -->
+    <div class="header">
+        <h1>Korea Connect</h1>
+    </div>
+
+    <!-- Cover Photo and Profile Image -->
+    <div class="cover-photo">
+        <div class="profile-container">
+            <div class="profile-picture"></div>
+        
+        </div>
+    </div>
+
+    <!-- User Information Section -->
+    <div class="user-info">
+        <h1>John Doe</h1>
+        <p>@johndoe</p>
+        <p>Software Developer | Tech Enthusiast | Gamer</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+        <a href="#">About</a>
+        <a href="#">Friends</a>
+        <a href="#">Photos</a>
+        <a href="#">Posts</a>
+    </div>
+
+    <!-- Posts Section -->
+    <div class="posts-section">
+        <!-- Sample Post 1 -->
+        <div class="post">
+            <div class="post-header">
+                <img src="KOREA-CONNECT IMG/post/post_1.png" alt="User" />
+                <div class="username">John Doe</div>
+            </div>
+            <div class="post-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+            </div>
+            <button class="post-button">Like</button>
+        </div>
+
+        <!-- Sample Post 2 -->
+        <div class="post">
+            <div class="post-header">
+                <img src="KOREA-CONNECT IMG/post/post_2.png" alt="User" />
+                <div class="username">John Doe</div>
+            </div>
+            <div class="post-content">
+                Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </div>
+            <button class="post-button">Like</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Korea Connect.</p>
+        <p>&copy; 2024 Korea Connect. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
 </body>
 </html>
