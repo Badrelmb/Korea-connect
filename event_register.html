@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Event - Korea Connect</title>
+    <title>Event Registration - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
         /* Reset some default styles */
@@ -20,7 +20,7 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            background-image: url("/KOREA-CONNECT IMG/Animation-img.webp");
+            background-image: url("/KOREA-CONNECT IMG/Animation-img.webp"); /* Same background image as event_create */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -28,54 +28,35 @@
             align-items: center;
         }
 
-        /* Form container */
-        .form-container {
+        /* Registration container styling */
+        .register-container {
             max-width: 400px;
             width: 100%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Title of the form */
-        .form-container h1 {
-            text-align: center;
+        /* Heading styling */
+        .register-container h1 {
             color: #333;
             margin-bottom: 20px;
         }
 
-        /* Form fields */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        textarea {
+        /* Input field styling */
+        .register-container input, 
+        .register-container select {
             width: 100%;
             padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
+            font-size: 14px;
         }
 
-        input:focus,
-        textarea:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        /* Regular Button */
-        button {
+        /* Register button styling */
+        .register-button {
             width: 100%;
             padding: 10px;
             background-color: #007bff;
@@ -87,21 +68,9 @@
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        /* Hover effect for button */
+        .register-button:hover {
             background-color: #0056b3;
-        }
-
-        /* Link to Sign Up page */
-        .form-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .form-container a:hover {
-            text-decoration: underline;
         }
 
         /* Header with logo and navigation */
@@ -136,30 +105,6 @@
             font-weight: bold;
         }
 
-        .login-btn, .signup-btn {
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #fff;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .login-btn {
-            background-color: #003366;
-        }
-
-        .signup-btn {
-            background-color: #6699cc;
-        }
-
-        .login-btn:hover {
-            background-color: #002244;
-        }
-
-        .signup-btn:hover {
-            background-color: #336699;
-        }
-
         .language-toggle {
             text-decoration: none;
             color: #003366;
@@ -183,38 +128,34 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" id="language-toggle" class="language-toggle">EN | KR</a></li>
-                    <hr>
-                    <hr>
+                    <li><a href="#" class="language-toggle" id="language-toggle">EN | KR</a></li>
                 </ul>
             </nav>
         </header>
 
-        <!-- Event Create Form -->
-        <div class="form-container">
-            <h1 data-text="Create Your Event">Create Your Event</h1>
-            <form action="event_create.php" method="POST">
+        <!-- Registration Form -->
+        <div class="register-container">
+            <h1 data-text="Register for Cultural Exchange Meetup">Register for Cultural Exchange Meetup</h1>
+            <form action="submit_registration.html" method="POST">
                 <div class="form-group">
-                    <label for="title" data-text="Event Title">Event Title</label>
-                    <input type="text" id="title" name="title" placeholder="Event Title" required />
+                    <input type="text" name="full_name" placeholder="Full Name" required />
                 </div>
                 <div class="form-group">
-                    <label for="category" data-text="Hobby Category">Hobby Category</label>
-                    <input type="text" id="category" name="category" placeholder="Hobby Category" required />
+                    <input type="email" name="email" placeholder="Email Address" required />
                 </div>
                 <div class="form-group">
-                    <label for="location" data-text="Event Location">Event Location</label>
-                    <input type="text" id="location" name="location" placeholder="Event Location" required />
+                    <input type="tel" name="phone" placeholder="Phone Number" required />
                 </div>
                 <div class="form-group">
-                    <label for="participants_limit" data-text="Max Participants">Max Participants</label>
-                    <input type="number" id="participants_limit" name="participants_limit" placeholder="Max Participants" required />
+                    <select name="interest" required>
+                        <option value="" disabled selected>Select an area of interest</option>
+                        <option value="Cultural Activities">Cultural Activities</option>
+                        <option value="Language Exchange">Language Exchange</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="description" data-text="Event Description">Event Description</label>
-                    <textarea id="description" name="description" placeholder="Event Description" required></textarea>
-                </div>
-                <button type="submit" data-text="Create Event">Create Event</button>
+                <button class="register-button" type="submit" data-text="Submit Registration">Submit Registration</button>
             </form>
         </div>
     </div>
@@ -224,22 +165,20 @@
         // Define translations for English and Korean
         const translations = {
             en: {
-                "Create Your Event": "Create Your Event",
-                "Event Title": "Event Title",
-                "Hobby Category": "Hobby Category",
-                "Event Location": "Event Location",
-                "Max Participants": "Max Participants",
-                "Event Description": "Event Description",
-                "Create Event": "Create Event"
+                "Register for Cultural Exchange Meetup": "Register for Cultural Exchange Meetup",
+                "Full Name": "Full Name",
+                "Email Address": "Email Address",
+                "Phone Number": "Phone Number",
+                "Select an area of interest": "Select an area of interest",
+                "Submit Registration": "Submit Registration"
             },
             kr: {
-                "Create Your Event": "이벤트 만들기",
-                "Event Title": "이벤트 제목",
-                "Hobby Category": "취미 카테고리",
-                "Event Location": "이벤트 위치",
-                "Max Participants": "최대 참여 인원",
-                "Event Description": "이벤트 설명",
-                "Create Event": "이벤트 만들기"
+                "Register for Cultural Exchange Meetup": "문화 교류 미팅 등록",
+                "Full Name": "성명",
+                "Email Address": "이메일 주소",
+                "Phone Number": "전화번호",
+                "Select an area of interest": "관심 분야 선택",
+                "Submit Registration": "등록 제출"
             }
         };
 

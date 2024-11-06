@@ -56,3 +56,34 @@ window.onscroll = function() {
         header.classList.remove("sticky");
     }
 };
+document.getElementById('kakaoLogin').addEventListener('click', function() {
+  // Implement KakaoTalk login logic here
+  alert('KakaoTalk login feature to be implemented!');
+});
+
+// Handle profile form submission
+document.getElementById('profile-form')?.addEventListener('submit', function(event) {
+  event.preventDefault();
+  // Save user profile logic here
+  alert('Profile updated!');
+});
+
+// Handle event creation
+document.getElementById('event-form')?.addEventListener('submit', function(event) {
+  event.preventDefault();
+  // Create event logic here
+  alert('Event created!');
+});
+
+// Handle sending messages
+document.getElementById('send-message')?.addEventListener('click', function() {
+  const message = document.getElementById('message').value;
+  if (message) {
+      const chatWindow = document.getElementById('chat-window');
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+      chatWindow.appendChild(messageElement);
+      document.getElementById('message').value = '';
+  }
+});
+

@@ -6,6 +6,7 @@
     <title>Login - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
+        /* Reset some default styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,6 +15,7 @@
             overflow: hidden;
         }
 
+        /* Hero Section - Full-screen background */
         .hero-section {
             position: relative;
             width: 100%;
@@ -26,19 +28,24 @@
             align-items: center;
         }
 
+        /* Form container */
         .form-container {
             max-width: 400px;
+            width: 100%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Title of the form */
         .form-container h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
         }
 
+        /* Form fields */
         .form-group {
             margin-bottom: 15px;
         }
@@ -51,7 +58,8 @@
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="email"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -64,6 +72,8 @@
             border-color: #007bff;
             outline: none;
         }
+
+        /* Kakao Login Button */
         #kakao-login-btn {
             width: 100%;
             padding: 10px;
@@ -79,10 +89,10 @@
         }
 
         #kakao-login-btn:hover {
-            background-color: #e5cc00; 
+            background-color: #e5cc00;
         }
 
-
+        /* Regular Button */
         button {
             width: 100%;
             padding: 10px;
@@ -95,12 +105,11 @@
             transition: background-color 0.3s ease;
         }
 
-
         button:hover {
             background-color: #0056b3;
         }
 
-
+        /* Link to Sign Up page */
         .form-container a {
             display: block;
             text-align: center;
@@ -113,6 +122,7 @@
             text-decoration: underline;
         }
 
+        /* Header with logo and navigation */
         #header {
             position: absolute;
             top: 0;
@@ -142,70 +152,93 @@
             color: #003366;
             font-weight: bold;
         }
-        .login-btn,
-    .signup-btn {
-        padding: 10px 20px;
-        border-radius: 5px;
-        color: #fff;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
 
-    .login-btn {
-        background-color: #003366;
-    }
+        .login-btn, .signup-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
 
-    .signup-btn {
-        background-color: #6699cc;
-    }
+        .login-btn {
+            background-color: #003366;
+        }
 
-    .login-btn:hover {
-        background-color: #002244;
-    }
+        .signup-btn {
+            background-color: #6699cc;
+        }
 
-    .signup-btn:hover {
-        background-color: #336699;
-    }
-        
+        .login-btn:hover {
+            background-color: #002244;
+        }
+
+        .signup-btn:hover {
+            background-color: #336699;
+        }
+
+        .language-toggle {
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .language-toggle:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="hero-section">
+        <!-- Header Section -->
         <header id="header">
             <div class="logo">
                 <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="language-toggle">EN | KR</a></li>
-                    <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+                    <li><a href="#" id="language-toggle" class="language-toggle">EN | KR</a></li>
+                    <li><a href="signup.html" class="signup-btn" data-text="Sign Up">Sign Up</a></li>
                 </ul>
             </nav>
         </header>
+
+        <!-- Login Form -->
         <div class="form-container">
-            <h1>Login</h1>
-            <form action="login.php" method="POST">
+            <h1 data-text="Login">Login</h1>
+            <form action="my_event.html" method="POST">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username" data-text="Username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required />
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" data-text="Password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password" required />
                 </div>
-                <button type="submit">Login</button>
-                <br /><br />
-            
-                <button id="kakao-login-btn">Login with KakaoTalk</button>
+              
+                <button type="submit" data-text="Login">Login</button>
 
-                <script>
-                Kakao.init('YOUR_APP_KEY');
 
-                document.getElementById('kakao-login-btn').addEventListener('click', function() {
-                    Kakao.Auth.login({
-                    success: function(authObj) {
-                        console.log(authObj);
-                        Kakao.API.request({
+                <!-- Kakao Login Button -->
+                
+                <button type="button" id="kakao-login-btn" data-text="Login with KakaoTalk">Login with KakaoTalk</button>
+            </form>
+
+            <!-- Link to Sign Up -->
+            <a href="signup.html" data-text="Create a new account">Create a new account</a>
+        </div>
+    </div>
+
+    <!-- Kakao Login Script -->
+    <script>
+        // Initialize Kakao SDK
+        Kakao.init('YOUR_APP_KEY');  // Replace with your actual Kakao app key
+
+        document.getElementById('kakao-login-btn').addEventListener('click', function() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                    console.log(authObj);
+                    Kakao.API.request({
                         url: '/v2/user/me',
                         success: function(res) {
                             console.log(res);
@@ -215,18 +248,57 @@
                             console.log(error);
                             alert('Failed to get user info.');
                         }
-                        });
-                    },
-                    fail: function(err) {
-                        console.log(err);
-                        alert('Failed to log in with Kakao.');
-                    }
                     });
-                });
-                </script>
-            </form>
-            <a href="signup.html">Create new account</a>
-        </div>
-    </div>
+                },
+                fail: function(err) {
+                    console.log(err);
+                    alert('Failed to log in with Kakao.');
+                }
+            });
+        });
+
+        // Define translations for English and Korean
+        const translations = {
+            en: {
+                "Login": "Login",
+                "Username": "Username",
+                "Password": "Password",
+                "Sign Up": "Sign Up",
+                "Create a new account": "Create a new account",
+                "Login with KakaoTalk": "Login with KakaoTalk"
+            },
+            kr: {
+                "Login": "로그인",
+                "Username": "사용자 이름",
+                "Password": "비밀번호",
+                "Sign Up": "회원 가입",
+                "Create a new account": "새 계정 만들기",
+                "Login with KakaoTalk": "카카오톡으로 로그인"
+            }
+        };
+
+        // Set default language (English)
+        let currentLanguage = "en";
+
+        // Function to toggle between languages
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
+
+            // Update text on page
+            document.querySelectorAll('[data-text]').forEach(element => {
+                const key = element.getAttribute('data-text');
+                if (translations[currentLanguage][key]) {
+                    element.innerText = translations[currentLanguage][key];
+                }
+            });
+
+            // Change language toggle button text
+            const toggleButton = document.getElementById('language-toggle');
+            toggleButton.innerText = currentLanguage === "en" ? "EN | KR" : "KR | EN";
+        }
+
+        // Add event listener to language toggle button
+        document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+    </script>
 </body>
 </html>

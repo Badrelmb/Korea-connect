@@ -135,30 +135,31 @@
             color: #003366;
             font-weight: bold;
         }
+
         .login-btn,
-    .signup-btn {
-        padding: 10px 20px;
-        border-radius: 5px;
-        color: #fff;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
+        .signup-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
 
-    .login-btn {
-        background-color: #003366;
-    }
+        .login-btn {
+            background-color: #003366;
+        }
 
-    .signup-btn {
-        background-color: #6699cc;
-    }
+        .signup-btn {
+            background-color: #6699cc;
+        }
 
-    .login-btn:hover {
-        background-color: #002244;
-    }
+        .login-btn:hover {
+            background-color: #002244;
+        }
 
-    .signup-btn:hover {
-        background-color: #336699;
-    }
+        .signup-btn:hover {
+            background-color: #336699;
+        }
 
         /* Additional styles for phone number input */
         .phone-container {
@@ -201,26 +202,26 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="language-toggle">EN | KR</a></li>
-                    <li><a href="login.html" class="login-btn">Login</a></li>
+                    <li><a href="#" class="language-toggle" id="language-toggle">EN | KR</a></li>
+                    <li><a href="login.html" class="login-btn" data-text="Login">Login</a></li>
                 </ul>
             </nav>
         </header>
 
         <!-- Sign Up Form -->
         <div class="form-container">
-            <h1>Sign Up</h1>
+            <h1 data-text="Sign Up">Sign Up</h1>
             <form action="signup.php" method="POST">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username" data-text="Username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required />
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-text="Email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Email" required />
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone" data-text="Phone Number">Phone Number</label>
                     <div class="phone-container">
                         <select id="country-code" name="country-code">
                             <option value="+1">+1 (USA)</option>
@@ -243,17 +244,66 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" data-text="Password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password" required />
                 </div>
                 <div class="form-group">
-                    <label for="confirm_password">Confirm Password</label>
+                    <label for="confirm_password" data-text="Confirm Password">Confirm Password</label>
                     <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required />
                 </div>
-                <button type="submit">Sign Up</button>
+                <button type="submit" data-text="Sign Up">Sign Up</button>
             </form>
-            <a href="login.html">Login</a>
+            <a href="login.html" data-text="Login">Login</a>
         </div>
     </div>
+
+    <script>
+        // Define translations for English and Korean
+        const translations = {
+            en: {
+                "Sign Up": "Sign Up",
+                "Username": "Username",
+                "Email": "Email",
+                "Phone Number": "Phone Number",
+                "Password": "Password",
+                "Confirm Password": "Confirm Password",
+                "Login": "Login",
+                "Sign Up": "Sign Up"
+            },
+            kr: {
+                "Sign Up": "가입하기",
+                "Username": "사용자 이름",
+                "Email": "이메일",
+                "Phone Number": "전화 번호",
+                "Password": "비밀번호",
+                "Confirm Password": "비밀번호 확인",
+                "Login": "로그인",
+                "Sign Up": "가입하기"
+            }
+        };
+
+        // Set default language (English)
+        let currentLanguage = "en";
+
+        // Function to toggle between languages
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
+
+            // Update text on page
+            document.querySelectorAll('[data-text]').forEach(element => {
+                const key = element.getAttribute('data-text');
+                if (translations[currentLanguage][key]) {
+                    element.innerText = translations[currentLanguage][key];
+                }
+            });
+
+            // Change language toggle button text
+            const toggleButton = document.getElementById('language-toggle');
+            toggleButton.innerText = currentLanguage === "en" ? "EN | KR" : "KR | EN";
+        }
+
+        // Add event listener to language toggle button
+        document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+    </script>
 </body>
 </html>
