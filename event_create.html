@@ -202,7 +202,11 @@
       <!-- Event Create Form -->
       <div class="form-container">
         <h1 data-text="Create Your Event">Create Your Event</h1>
-        <form action="event_create.php" method="POST">
+        <form
+          action="event_create.php"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           <div class="form-group">
             <label for="title" data-text="Event Title">Event Title</label>
             <input
@@ -210,6 +214,16 @@
               id="title"
               name="title"
               placeholder="Event Title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventPhoto" data-text="Event Photo">Event Photo</label>
+            <input
+              type="file"
+              id="eventPhoto"
+              name="eventPhoto"
+              accept="image/*"
               required
             />
           </div>
@@ -224,6 +238,14 @@
               placeholder="Hobby Category"
               required
             />
+          </div>
+          <div class="form-group">
+            <label for="eventDate" data-text="Event Date">Event Date</label>
+            <input type="date" id="eventDate" name="eventDate" required />
+          </div>
+          <div class="form-group">
+            <label for="eventTime" data-text="Event Time">Event Time</label>
+            <input type="time" id="eventTime" name="eventTime" required />
           </div>
           <div class="form-group">
             <label for="location" data-text="Event Location"
@@ -260,6 +282,7 @@
               required
             ></textarea>
           </div>
+
           <button type="submit" data-text="Create Event">Create Event</button>
         </form>
       </div>
