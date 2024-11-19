@@ -246,9 +246,35 @@
           <script>
             document
               .getElementById("login-btn")
-              .addEventListener("click", function () {
-                event.preventDefault();
-                window.location.href = "my_event.html"; // Redirect to my_event.html
+              .addEventListener("click", async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // Collect form data
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                try {
+                  // Send a POST request to the server
+                  const response = await fetch("http://localhost:4000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password }),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.ok) {
+                    // Display success message (optional) and redirect to the profile page
+                    alert(result.message); // Optionally display a success alert
+                    window.location.href = "my_event.html"; // Redirect to the user's event page
+                  } else {
+                    // Display error message
+                    alert(result.message); // Show an error alert
+                  }
+                } catch (error) {
+                  console.error("Error:", error);
+                  alert("Error logging in. Please try again.");
+                }
               });
           </script>
 
