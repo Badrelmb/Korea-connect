@@ -1,183 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Event - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
-        /* Reset some default styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-        }
+      /* Reset some default styles */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        overflow: hidden;
+      }
 
-        /* Hero Section - Full-screen background */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url("/KOREA-CONNECT IMG/Animation-img.webp");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      /* Hero Section - Full-screen background */
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-image: url("/KOREA-CONNECT IMG/Animation-img.webp");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        /* Form container */
-        .form-container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+      /* Form container */
+      .form-container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        /* Title of the form */
-        .form-container h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+      /* Title of the form */
+      .form-container h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
 
-        /* Form fields */
-        .form-group {
-            margin-bottom: 15px;
-        }
+      /* Form fields */
+      .form-group {
+        margin-bottom: 15px;
+      }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
 
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
 
-        input:focus,
-        textarea:focus {
-            border-color: #007bff;
-            outline: none;
-        }
+      input:focus,
+      textarea:focus {
+        border-color: #007bff;
+        outline: none;
+      }
 
-        /* Regular Button */
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+      /* Regular Button */
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+      button:hover {
+        background-color: #0056b3;
+      }
 
-        /* Link to Sign Up page */
-        .form-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
+      /* Link to Sign Up page */
+      .form-container a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
 
-        .form-container a:hover {
-            text-decoration: underline;
-        }
+      .form-container a:hover {
+        text-decoration: underline;
+      }
 
-        /* Header with logo and navigation */
-        #header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: transparent;
-        }
+      /* Header with logo and navigation */
+      #header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: transparent;
+      }
 
         #header .logo img {
             height: 100px;
             cursor: pointer;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
 
-        nav ul li {
-            display: inline;
-        }
+      nav ul li {
+        display: inline;
+      }
 
-        nav ul li a {
-            text-decoration: none;
-            color: #003366;
-            font-weight: bold;
-        }
+      nav ul li a {
+        text-decoration: none;
+        color: #003366;
+        font-weight: bold;
+      }
 
-        .login-btn, .signup-btn {
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #fff;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
+      .login-btn,
+      .signup-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
 
-        .login-btn {
-            background-color: #003366;
-        }
+      .login-btn {
+        background-color: #003366;
+      }
 
-        .signup-btn {
-            background-color: #6699cc;
-        }
+      .signup-btn {
+        background-color: #6699cc;
+      }
 
-        .login-btn:hover {
-            background-color: #002244;
-        }
+      .login-btn:hover {
+        background-color: #002244;
+      }
 
-        .signup-btn:hover {
-            background-color: #336699;
-        }
+      .signup-btn:hover {
+        background-color: #336699;
+      }
 
-        .language-toggle {
-            text-decoration: none;
-            color: #003366;
-            font-weight: bold;
-        }
+      .language-toggle {
+        text-decoration: none;
+        color: #003366;
+        font-weight: bold;
+      }
 
-        .language-toggle:hover {
-            text-decoration: underline;
-        }
+      .language-toggle:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="hero-section">
         <!-- Header Section -->
         <header id="header">
             <div class="logo">
                 <!-- Wrap the logo in an anchor tag to make it clickable and go to index.html -->
-                <a href="my_event.html">
+                <a href="index.html">
                     <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
                 </a>
             </div>
@@ -190,81 +192,144 @@
             </nav>
         </header>
 
-        <!-- Event Create Form -->
-        <div class="form-container">
-            <h1 data-text="Create Your Event">Create Your Event</h1>
-            <form action="event_create.php" method="POST">
-                <div class="form-group">
-                    <label for="title" data-text="Event Title">Event Title</label>
-                    <input type="text" id="title" name="title" placeholder="Event Title" required />
-                </div>
-                <div class="form-group">
-                    <label for="category" data-text="Hobby Category">Hobby Category</label>
-                    <input type="text" id="category" name="category" placeholder="Hobby Category" required />
-                </div>
-                <div class="form-group">
-                    <label for="location" data-text="Event Location">Event Location</label>
-                    <input type="text" id="location" name="location" placeholder="Event Location" required />
-                </div>
-                <div class="form-group">
-                    <label for="participants_limit" data-text="Max Participants">Max Participants</label>
-                    <input type="number" id="participants_limit" name="participants_limit" placeholder="Max Participants" required />
-                </div>
-                <div class="form-group">
-                    <label for="description" data-text="Event Description">Event Description</label>
-                    <textarea id="description" name="description" placeholder="Event Description" required></textarea>
-                </div>
-                <button type="submit" data-text="Create Event">Create Event</button>
-            </form>
-        </div>
+      <!-- Event Create Form -->
+      <div class="form-container">
+        <h1 data-text="Create Your Event">Create Your Event</h1>
+        <form
+          action="event_create.php"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <label for="title" data-text="Event Title">Event Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Event Title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventPhoto" data-text="Event Photo">Event Photo</label>
+            <input
+              type="file"
+              id="eventPhoto"
+              name="eventPhoto"
+              accept="image/*"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="category" data-text="Hobby Category"
+              >Hobby Category</label
+            >
+            <input
+              type="text"
+              id="category"
+              name="category"
+              placeholder="Hobby Category"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventDate" data-text="Event Date">Event Date</label>
+            <input type="date" id="eventDate" name="eventDate" required />
+          </div>
+          <div class="form-group">
+            <label for="eventTime" data-text="Event Time">Event Time</label>
+            <input type="time" id="eventTime" name="eventTime" required />
+          </div>
+          <div class="form-group">
+            <label for="location" data-text="Event Location"
+              >Event Location</label
+            >
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Event Location"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="participants_limit" data-text="Max Participants"
+              >Max Participants</label
+            >
+            <input
+              type="number"
+              id="participants_limit"
+              name="participants_limit"
+              placeholder="Max Participants"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="description" data-text="Event Description"
+              >Event Description</label
+            >
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Event Description"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" data-text="Create Event">Create Event</button>
+        </form>
+      </div>
     </div>
 
     <!-- Language Toggle Script -->
     <script>
-        // Define translations for English and Korean
-        const translations = {
-            en: {
-                "Create Your Event": "Create Your Event",
-                "Event Title": "Event Title",
-                "Hobby Category": "Hobby Category",
-                "Event Location": "Event Location",
-                "Max Participants": "Max Participants",
-                "Event Description": "Event Description",
-                "Create Event": "Create Event"
-            },
-            kr: {
-                "Create Your Event": "이벤트 만들기",
-                "Event Title": "이벤트 제목",
-                "Hobby Category": "취미 카테고리",
-                "Event Location": "이벤트 위치",
-                "Max Participants": "최대 참여 인원",
-                "Event Description": "이벤트 설명",
-                "Create Event": "이벤트 만들기"
-            }
-        };
+      // Define translations for English and Korean
+      const translations = {
+        en: {
+          "Create Your Event": "Create Your Event",
+          "Event Title": "Event Title",
+          "Hobby Category": "Hobby Category",
+          "Event Location": "Event Location",
+          "Max Participants": "Max Participants",
+          "Event Description": "Event Description",
+          "Create Event": "Create Event",
+        },
+        kr: {
+          "Create Your Event": "이벤트 만들기",
+          "Event Title": "이벤트 제목",
+          "Hobby Category": "취미 카테고리",
+          "Event Location": "이벤트 위치",
+          "Max Participants": "최대 참여 인원",
+          "Event Description": "이벤트 설명",
+          "Create Event": "이벤트 만들기",
+        },
+      };
 
-        // Set default language (English)
-        let currentLanguage = "en";
+      // Set default language (English)
+      let currentLanguage = "en";
 
-        // Function to toggle between languages
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
+      // Function to toggle between languages
+      function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
 
-            // Update text on page
-            document.querySelectorAll('[data-text]').forEach(element => {
-                const key = element.getAttribute('data-text');
-                if (translations[currentLanguage][key]) {
-                    element.innerText = translations[currentLanguage][key];
-                }
-            });
+        // Update text on page
+        document.querySelectorAll("[data-text]").forEach((element) => {
+          const key = element.getAttribute("data-text");
+          if (translations[currentLanguage][key]) {
+            element.innerText = translations[currentLanguage][key];
+          }
+        });
 
-            // Change language toggle button text
-            const toggleButton = document.getElementById('language-toggle');
-            toggleButton.innerText = currentLanguage === "en" ? "EN | KR" : "KR | EN";
-        }
+        // Change language toggle button text
+        const toggleButton = document.getElementById("language-toggle");
+        toggleButton.innerText =
+          currentLanguage === "en" ? "EN | KR" : "KR | EN";
+      }
 
-        // Add event listener to language toggle button
-        document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+      // Add event listener to language toggle button
+      document
+        .getElementById("language-toggle")
+        .addEventListener("click", toggleLanguage);
     </script>
-</body>
+  </body>
 </html>

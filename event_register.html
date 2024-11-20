@@ -1,210 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Registration - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
-        /* Reset some default styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-        }
+      /* Reset some default styles */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        overflow: hidden;
+      }
 
-        /* Hero Section - Full-screen background */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url("/KOREA-CONNECT IMG/Animation-img.webp"); /* Same background image as event_create */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      /* Hero Section - Full-screen background */
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-image: url("/KOREA-CONNECT IMG/Animation-img.webp"); /* Same background image as event_create */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        /* Registration container styling */
-        .register-container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+      /* Registration container styling */
+      .register-container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        /* Heading styling */
-        .register-container h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+      /* Heading styling */
+      .register-container h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
 
-        /* Input field styling */
-        .register-container input, 
-        .register-container select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+      /* Input field styling */
+      .register-container input,
+      .register-container select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
 
-        /* Register button styling */
-        .register-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+      /* Register button styling */
+      .register-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
 
-        /* Hover effect for button */
-        .register-button:hover {
-            background-color: #0056b3;
-        }
+      /* Hover effect for button */
+      .register-button:hover {
+        background-color: #0056b3;
+      }
 
-        /* Header with logo and navigation */
-        #header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: transparent;
-        }
+      /* Header with logo and navigation */
+      #header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: transparent;
+      }
 
         #header .logo img {
             height: 100px;
             cursor: pointer;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
 
-        nav ul li {
-            display: inline;
-        }
+      nav ul li {
+        display: inline;
+      }
 
-        nav ul li a {
-            text-decoration: none;
-            color: #003366;
-            font-weight: bold;
-        }
+      nav ul li a {
+        text-decoration: none;
+        color: #003366;
+        font-weight: bold;
+      }
 
-        .language-toggle {
-            text-decoration: none;
-            padding-right: 40px;
-            color: #003366;
-            font-weight: bold;
-        }
+      .language-toggle {
+        text-decoration: none;
+        padding-right: 40px;
+        color: #003366;
+        font-weight: bold;
+      }
 
-        .language-toggle:hover {
-            text-decoration: underline;
-        }
+      .language-toggle:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="hero-section">
-        <!-- Header Section -->
-        <header id="header">
-            <div class="logo">
-                <!-- Wrap the logo in an anchor tag to make it clickable and go to index.html -->
-                <a href="index.html">
-                    <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="language-toggle" id="language-toggle">EN | KR</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Registration Form -->
-        <div class="register-container">
-            <h1 data-text="Register for Cultural Exchange Meetup">Register for Cultural Exchange Meetup</h1>
-            <form action="submit_registration.html" method="POST">
-                <div class="form-group">
-                    <input type="text" name="full_name" placeholder="Full Name" required />
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Email Address" required />
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone Number" required />
-                </div>
-                <div class="form-group">
-                    <select name="interest" required>
-                        <option value="" disabled selected>Select an area of interest</option>
-                        <option value="Cultural Activities">Cultural Activities</option>
-                        <option value="Language Exchange">Language Exchange</option>
-                        <option value="Networking">Networking</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <button class="register-button" type="submit" data-text="Submit Registration">Submit Registration</button>
-            </form>
+      <!-- Header Section -->
+      <header id="header">
+        <div class="logo">
+          <!-- Wrap the logo in an anchor tag to make it clickable and go to index.html -->
+          <a href="my_event.html">
+            <img
+              src="/KOREA-CONNECT IMG/logo_transparent.png"
+              alt="Korea Connect Logo"
+            />
+          </a>
         </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#" class="language-toggle" id="language-toggle"
+                >EN | KR</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Registration Form -->
+      <div class="register-container">
+        <h1 data-text="Register for Cultural Exchange Meetup">
+          Register for Cultural Exchange Meetup
+        </h1>
+        <form action="submit_registration.html" method="POST">
+          <div class="form-group">
+            <input
+              type="text"
+              name="full_name"
+              placeholder="Full Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <select name="interest" required>
+              <option value="" disabled selected>
+                Select an area of interest
+              </option>
+              <option value="Cultural Activities">Cultural Activities</option>
+              <option value="Language Exchange">Language Exchange</option>
+              <option value="Networking">Networking</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button
+            class="register-button"
+            type="submit"
+            data-text="Submit Registration"
+          >
+            Submit Registration
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- Language Toggle Script -->
     <script>
-        // Define translations for English and Korean
-        const translations = {
-            en: {
-                "Register for Cultural Exchange Meetup": "Register for Cultural Exchange Meetup",
-                "Full Name": "Full Name",
-                "Email Address": "Email Address",
-                "Phone Number": "Phone Number",
-                "Select an area of interest": "Select an area of interest",
-                "Submit Registration": "Submit Registration"
-            },
-            kr: {
-                "Register for Cultural Exchange Meetup": "문화 교류 미팅 등록",
-                "Full Name": "성명",
-                "Email Address": "이메일 주소",
-                "Phone Number": "전화번호",
-                "Select an area of interest": "관심 분야 선택",
-                "Submit Registration": "등록 제출"
-            }
-        };
+      // Define translations for English and Korean
+      const translations = {
+        en: {
+          "Register for Cultural Exchange Meetup":
+            "Register for Cultural Exchange Meetup",
+          "Full Name": "Full Name",
+          "Email Address": "Email Address",
+          "Phone Number": "Phone Number",
+          "Select an area of interest": "Select an area of interest",
+          "Submit Registration": "Submit Registration",
+        },
+        kr: {
+          "Register for Cultural Exchange Meetup": "문화 교류 미팅 등록",
+          "Full Name": "성명",
+          "Email Address": "이메일 주소",
+          "Phone Number": "전화번호",
+          "Select an area of interest": "관심 분야 선택",
+          "Submit Registration": "등록 제출",
+        },
+      };
 
-        // Set default language (English)
-        let currentLanguage = "en";
+      // Set default language (English)
+      let currentLanguage = "en";
 
-        // Function to toggle between languages
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
+      // Function to toggle between languages
+      function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
 
-            // Update text on page
-            document.querySelectorAll('[data-text]').forEach(element => {
-                const key = element.getAttribute('data-text');
-                if (translations[currentLanguage][key]) {
-                    element.innerText = translations[currentLanguage][key];
-                }
-            });
+        // Update text on page
+        document.querySelectorAll("[data-text]").forEach((element) => {
+          const key = element.getAttribute("data-text");
+          if (translations[currentLanguage][key]) {
+            element.innerText = translations[currentLanguage][key];
+          }
+        });
 
-            // Change language toggle button text
-            const toggleButton = document.getElementById('language-toggle');
-            toggleButton.innerText = currentLanguage === "en" ? "EN | KR" : "KR | EN";
-        }
+        // Change language toggle button text
+        const toggleButton = document.getElementById("language-toggle");
+        toggleButton.innerText =
+          currentLanguage === "en" ? "EN | KR" : "KR | EN";
+      }
 
-        // Add event listener to language toggle button
-        document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+      // Add event listener to language toggle button
+      document
+        .getElementById("language-toggle")
+        .addEventListener("click", toggleLanguage);
     </script>
-</body>
+  </body>
 </html>

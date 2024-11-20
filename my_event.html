@@ -1,122 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events - Korea Connect</title>
     <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <style>
-        .profile-photo {
-            width: 80px;
-            height: 80px;
-            background-color: #007bff;
-            color: white;
-            font-size: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-transform: uppercase;
-            font-weight: bold;
-            border: 3px solid #ffffff;
-        }
+      .profile-photo {
+        width: 80px;
+        height: 80px;
+        background-color: #007bff;
+        color: white;
+        font-size: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: 3px solid #ffffff;
+      }
 
-        .profile-photo i {
-            font-size: 1.5rem;
-        }
+      .profile-photo i {
+        font-size: 1.5rem;
+      }
 
-        /* Position the profile section in the top-right corner */
-        .profile-container {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            display: flex;
-            align-items: center;
-        }
+      /* Position the profile section in the top-right corner */
+      .profile-container {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+      }
 
-        .profile-container h4 {
-            margin-left: 10px;
-            font-size: 1.1rem;
-        }
+      .profile-container h4 {
+        margin-left: 10px;
+        font-size: 1.1rem;
+      }
 
-        .profile-init a{
-            text-decoration: none;
-            color: #ffffff;
-            z-index: 1000;
-        }
+      .profile-init a {
+        text-decoration: none;
+        color: #ffffff;
+        z-index: 1000;
+      }
 
-        /* Ensure all event images have equal height and width */
-        .card-img-top {
-            object-fit: cover;  /* Ensure the image is scaled to fill the container without distortion */
-            width: 100%;
-            height: 200px;  /* Set a fixed height for all images */
-        }
+      /* Style for the logout button */
+      .logout-btn {
+        margin-left: 15px;
+        background-color: #dc3545;
+        color: white;
+        padding: 8px 15px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-        /* Ensure the image cards also maintain their dimensions */
-        .card {
-            height: 100%;
-        }
+      .logout-btn:hover {
+        background-color: #c82333;
+      }
 
-        .event-details {
-            font-size: 0.9rem;
-            color: #555;
-        }
+      /* Ensure all event images have equal height and width */
+      .card-img-top {
+        object-fit: cover; /* Ensure the image is scaled to fill the container without distortion */
+        width: 100%;
+        height: 200px; /* Set a fixed height for all images */
+      }
+
+      /* Ensure the image cards also maintain their dimensions */
+      .card {
+        height: 100%;
+      }
+
+      .event-details {
+        font-size: 0.9rem;
+        color: #555;
+      }
 
         .event-details span {
             display: block;
             margin-bottom: 5px;
         }
-        header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: transparent;
-        }
 
-        #header .logo img {
-            height: 100px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #003366;
-            font-weight: bold;
-        }
-
+      /* Adjust logo size */
+      .navbar-brand img {
+        max-width: 200px;  /* Adjust this value to control the logo size */
+        height: 100px; /* Keep aspect ratio */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header Section -->
-    <header id="header">
-        <div class="logo">
-            <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
-        </div>
-            <div class="col-md-6 d-none d-lg-block">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item dropdown">
-                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+    <header class="bg-light shadow-sm position-relative">
+        <div class="container">
+            <div class="row align-items-center py-3">
+                <div class="col-md-3 col-sm-6">
+                    <a href="index.html" class="navbar-brand">
+                        <img src="KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" class="img-fluid" />
+                    </a>
+                </div>
+                <div class="col-md-6 d-none d-lg-block">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                                         Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about.html">About</a>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="about.html">About</a>
                                         <a class="dropdown-item" href="event_create.html">Create an Event</a>
                                         <a class="dropdown-item" href="blog.html">Blogs</a>
                                         <a class="dropdown-item" href="event_view.html">Events</a>
@@ -134,6 +134,8 @@
                             <a href="profile.html">J</a></span>
                         </div>
                         <h4 class="text-dark">John Doe</h4>
+                        <!-- Logout Button -->
+                        <button class="logout-btn">Logout</button>
                     </div>
                 </div>
             </div>
@@ -157,10 +159,13 @@
 
     <!-- Hero Section -->
     <section class="hero-section text-center bg-light py-5">
-        <div class="container">
-            <h1>Upcoming Events on Korea Connect</h1>
-            <p>Explore and join upcoming events that connect people through shared interests.</p>
-        </div>
+      <div class="container">
+        <h1>Upcoming Events on Korea Connect</h1>
+        <p>
+          Explore and join upcoming events that connect people through shared
+          interests.
+        </p>
+      </div>
     </section>
 
     <!-- Events List Section -->
@@ -210,7 +215,6 @@
                             </div>
                             <a href="event_detail.html" class="btn btn-primary">Learn More</a>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -221,5 +225,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
