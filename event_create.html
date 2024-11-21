@@ -337,6 +337,41 @@
       document
         .getElementById("language-toggle")
         .addEventListener("click", toggleLanguage);
+
+      //Handling event creation POST
+      document
+        .querySelector("form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Collect form data
+          const form = event.target;
+          const formData = new FormData(form); // Using FormData for handling file uploads
+
+          try {
+            // Send a POST request to the server
+            const response = await fetch("http://localhost:4000/create-event", {
+              method: "POST",
+              body: formData, // Send the form data
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+              // Display success message
+              alert(result.message);
+
+              // Redirect to the events page or clear the form
+              window.location.href = "my_event.html"; // Redirect to the events page
+            } else {
+              // Display error message
+              alert(result.message);
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Error creating the event. Please try again.");
+          }
+        });
     </script>
   </body>
 </html>
