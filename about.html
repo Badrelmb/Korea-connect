@@ -47,6 +47,29 @@
         text-decoration: none;
         color: #ffffff;
       }
+
+      .navbar-brand img {
+        height: 100px;
+      }
+
+      /* Language toggle styles */
+      .language-toggle-container {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .language-toggle-container a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      .language-toggle-container a:hover {
+        color: #0056b3;
+      }
     </style>
   </head>
   <body>
@@ -79,6 +102,10 @@
               <h4 class="text-dark">John Doe</h4>
             </div>
           </div>
+        </div>
+        <!-- Language Toggle Button in the top-right -->
+        <div class="language-toggle-container">
+          <a href="#" class="language-toggle" onclick="toggleLanguage()">EN | KR</a>
         </div>
       </div>
     </header>
@@ -127,11 +154,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Language Toggle Button -->
-    <div class="container text-center py-4">
-      <a href="#" class="language-toggle" onclick="toggleLanguage()">EN | KR</a>
-    </div>
 
     <!-- Optional JavaScript for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

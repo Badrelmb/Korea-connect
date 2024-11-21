@@ -50,6 +50,23 @@
         z-index: 1000;
       }
 
+      /* Style for the logout button */
+      .logout-btn {
+        margin-left: 15px;
+        background-color: #dc3545;
+        color: white;
+        padding: 8px 15px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .logout-btn:hover {
+        background-color: #c82333;
+      }
+
       /* Ensure all event images have equal height and width */
       .card-img-top {
         object-fit: cover; /* Ensure the image is scaled to fill the container without distortion */
@@ -67,100 +84,77 @@
         color: #555;
       }
 
-      .event-details span {
-        display: block;
-        margin-bottom: 5px;
+        .event-details span {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+      /* Adjust logo size */
+      .navbar-brand img {
+        max-width: 200px;  /* Adjust this value to control the logo size */
+        height: 100px; /* Keep aspect ratio */
       }
     </style>
   </head>
   <body>
     <!-- Header Section -->
     <header class="bg-light shadow-sm position-relative">
-      <div class="container">
-        <div class="row align-items-center py-3">
-          <div class="col-md-3 col-sm-6">
-            <a href="my_event.html" class="navbar-brand">
-              <img
-                src="KOREA-CONNECT IMG/logo_transparent.png"
-                alt="Korea Connect Logo"
-                class="img-fluid"
-              />
-            </a>
-          </div>
-          <div class="col-md-6 d-none d-lg-block">
-            <nav class="navbar navbar-expand-lg navbar-light">
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                    >
-                      Pages
+        <div class="container">
+            <div class="row align-items-center py-3">
+                <div class="col-md-3 col-sm-6">
+                    <a href="index.html" class="navbar-brand">
+                        <img src="KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" class="img-fluid" />
                     </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="about.html">About</a>
-                      <a class="dropdown-item" href="event_create.html"
-                        >Create an Event</a
-                      >
-                      <a class="dropdown-item" href="blog.html">Blogs</a>
-                      <a class="dropdown-item" href="event_view.html">Events</a>
+                </div>
+                <div class="col-md-6 d-none d-lg-block">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                        Pages
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="about.html">About</a>
+                                        <a class="dropdown-item" href="event_create.html">Create an Event</a>
+                                        <a class="dropdown-item" href="blog.html">Blogs</a>
+                                        <a class="dropdown-item" href="event_view.html">Events</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Profile section placed at the top-right -->
+                <div class="col-md-3 text-right">
+                    <div class="profile-container">
+                        <div class="profile-photo">
+                            <span class="profile-init">
+                            <a href="profile.html">J</a></span>
+                        </div>
+                        <h4 class="text-dark">John Doe</h4>
+                        <!-- Logout Button -->
+                        <button class="logout-btn">Logout</button>
                     </div>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
-          <!-- Profile section placed at the top-right -->
-          <div class="col-md-3 text-right">
-            <div class="profile-container">
-              <div class="profile-photo">
-                <span class="profile-init"> <a href="profile.html">J</a></span>
-              </div>
-              <h4 class="text-dark">John Doe</h4>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- Mobile Navigation -->
-      <nav class="navbar navbar-light bg-light d-lg-none">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#mobileNav"
-          aria-controls="mobileNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mobileNav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="event_create.html">Create an Event</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="blog.html">Blogs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="event_view.html">Events</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <!-- Mobile Navigation -->
+        <nav class="navbar navbar-light bg-light d-lg-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mobileNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="event_create.html">Create an Event</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="event_view.html">Events</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -176,81 +170,55 @@
 
     <!-- Events List Section -->
     <section class="events-section py-5">
-      <div class="container">
-        <div class="row">
-          <!-- Sample Event Card 1 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/KoreanCooking.png"
-                class="card-img-top"
-                alt="Event Image 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Korean Cooking Workshop</h5>
-                <p class="card-text">
-                  Learn to cook authentic Korean dishes in this hands-on
-                  workshop!
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 15, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Gangnam, 123 Street</span
-                  >
+        <div class="container">
+            <div class="row">
+                <!-- Sample Event Card 1 -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="KOREA-CONNECT IMG/KoreanCooking.png" class="card-img-top" alt="Event Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Korean Cooking Workshop</h5>
+                            <p class="card-text">Learn to cook authentic Korean dishes in this hands-on workshop!</p>
+                            <div class="event-details">
+                                <span><strong>Date:</strong> November 15, 2024</span>
+                                <span><strong>Address:</strong> Seoul, Gangnam, 123 Street</span>
+                            </div>
+                            <a href="event_detail.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
                 </div>
-                <a href="event_view.html" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
-          </div>
-          <!-- Sample Event Card 2 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/LanguageExchange.webp"
-                class="card-img-top"
-                alt="Event Image 3"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Language Exchange Meetup</h5>
-                <p class="card-text">
-                  Practice Korean with locals and improve your language skills.
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 18, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Itaewon, 456 Street</span
-                  >
+                <!-- Sample Event Card 2 -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="KOREA-CONNECT IMG/LanguageExchange.webp" class="card-img-top" alt="Event Image 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Language Exchange Meetup</h5>
+                            <p class="card-text">Practice Korean with locals and improve your language skills.</p>
+                            <div class="event-details">
+                                <span><strong>Date:</strong> November 18, 2024</span>
+                                <span><strong>Address:</strong> Seoul, Itaewon, 456 Street</span>
+                            </div>
+                            <a href="event_detail.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
                 </div>
-                <a href="event_view.html" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
-          </div>
-          <!-- Sample Event Card 3 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/K-POP dance.webp"
-                class="card-img-top"
-                alt="Event Image 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">K-Pop Dance Class</h5>
-                <p class="card-text">
-                  Join a fun and energetic dance class to learn the latest K-pop
-                  moves.
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 20, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Hongdae, 789 Street</span
-                  >
+                <!-- Sample Event Card 3 -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="KOREA-CONNECT IMG/K-POP dance.webp" class="card-img-top" alt="Event Image 2">
+                        <div class="card-body">
+                            <h5 class="card-title">K-Pop Dance Class</h5>
+                            <p class="card-text">Join a fun and energetic dance class to learn the latest K-pop moves.</p>
+                            <div class="event-details">
+                                <span><strong>Date:</strong> November 20, 2024</span>
+                                <span><strong>Address:</strong> Seoul, Hongdae, 789 Street</span>
+                            </div>
+                            <a href="event_detail.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
                 </div>
-                <a href="event_view.html" class="btn btn-primary">Learn More</a>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Optional JavaScript for Bootstrap -->
