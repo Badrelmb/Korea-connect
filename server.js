@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const multer = require('multer');
+const path = require('path');
 
 dotenv.config();
 const app = express();
@@ -16,6 +18,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
 // Create MySQL connection
 const db = mysql.createConnection({
@@ -32,6 +35,50 @@ db.connect((err) => {
   } else {
     console.log('Connected to the database.');
   }
+});
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Route for event creation
+app.post('/create-event', upload.single('eventPhoto'), (req, res) => {
+  const { title, category, eventDate, eventTime, location, participants_limit, description } = req.body;
+  const eventPhoto = req.file ? `/uploads/${req.file.filename}` : null;
+
+  const query = `
+    INSERT INTO events (title, event_photo, category, event_date, event_time, location, participants_limit, description)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  db.query(query, [title, eventPhoto, category, eventDate, eventTime, location, participants_limit, description], (err, result) => {
+    if (err) {
+      console.error('Error inserting event:', err);
+      return res.status(500).json({ message: 'Error creating event' });
+    }
+    res.status(201).json({ message: 'Event created successfully' });
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+app.get('/events', (req, res) => {
+  const query = 'SELECT * FROM events ORDER BY event_date, event_time';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching events:', err);
+      return res.status(500).json({ message: 'Error fetching events' });
+    }
+    res.status(200).json(results);
+  });
 });
 
 // Route: Signup
@@ -99,6 +146,3 @@ app.post('/login', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
