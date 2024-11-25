@@ -81,17 +81,20 @@ app.post('/signup', async (req, res) => {
 
   // Validate incoming data
   if (!username || !email || !phone || !country_code || !nationality || !password) {
+    console.log('Validation failed'); 
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
   try {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Password hashed successfully')
 
     // Insert user into database
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
+     const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
     await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
-
+console.log('User inserted successfully:', result);
     // Send success response
     res.status(201).json({ message: 'User registered successfully!' });
   } catch (err) {
