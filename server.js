@@ -88,13 +88,13 @@ app.post('/signup', async (req, res) => {
   try {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('Password hashed successfully')
+    console.log('Password hashed successfully');
 
-    // Insert user into database
+    // Insert user into database (only once)
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
-     const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
-    await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
-console.log('User inserted successfully:', result);
+    const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
+
+    console.log('User inserted successfully:', result);
     // Send success response
     res.status(201).json({ message: 'User registered successfully!' });
   } catch (err) {
@@ -102,6 +102,7 @@ console.log('User inserted successfully:', result);
     res.status(500).json({ message: 'Error registering user. Please try again.' });
   }
 });
+
 
 
 
