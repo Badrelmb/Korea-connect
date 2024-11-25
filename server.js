@@ -80,7 +80,7 @@ app.post('/signup', (req, res) => {
   const { username, email, phone, country_code, nationality, password } = req.body;
 
   if (!username || !email || !phone || !country_code || !nationality || !password) {
-    return res.status(400).json({ message: 'All fields are required.' }); // Return proper JSON error
+    return res.status(400).json({ message: 'All fields are required.' }); // Error response
   }
 
   // Hash the password
@@ -94,11 +94,12 @@ app.post('/signup', (req, res) => {
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
     db.query(query, [username, email, phone, country_code, nationality, hashedPassword])
       .then(() => {
-        res.status(201).json({ message: 'User registered successfully' }); // Return success response
+        // Send a success response with a message
+        res.status(201).json({ message: 'User registered successfully!' });
       })
       .catch((err) => {
         console.error('Error inserting user:', err);
-        res.status(500).json({ message: 'Error registering user' }); // Return proper JSON error
+        res.status(500).json({ message: 'Error registering user.' }); // Error response
       });
   });
 });
