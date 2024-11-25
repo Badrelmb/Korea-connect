@@ -77,21 +77,30 @@ app.get('/events', (req, res) => {
 });
 
 // Signup
-app.post('/signup', async (req, res) => {
+app.post('/signup', (req, res) => {
   const { username, email, phone, country_code, nationality, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const query = `
-      INSERT INTO users (username, email, phone, country_code, nationality, password)
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id
-    `;
-    const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
-    res.status(201).json({ message: 'User registered successfully', userId: result.rows[0].id });
-  } catch (err) {
-    console.error('Error during signup:', err);
-    res.status(500).json({ message: 'Internal server error', error: err.message });
-  }
+
+  // Hash the password
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    if (err) {
+      console.error('Error hashing password:', err);
+      return res.status(500).json({ message: 'Error hashing password' });
+    }
+
+    // Insert user into database
+    const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
+    db.query(query, [username, email, phone, country_code, nationality, hashedPassword])
+      .then(() => {
+        // Send a success response
+        res.status(201).json({ message: 'User registered successfully' });
+      })
+      .catch((err) => {
+        console.error('Error inserting user:', err);
+        res.status(500).json({ message: 'Error registering user' });
+      });
+  });
 });
+
 
 // Login
 app.post('/login', (req, res) => {
