@@ -44,8 +44,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Welcome to Korea Connect API');
+app.get('/test-db', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM users;');
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error('Error querying database:', err);
+    res.status(500).json({ message: 'Database error' });
+  }
 });
 
 // Create Event
@@ -92,6 +98,9 @@ app.post('/signup', async (req, res) => {
 
     // Insert user into database (only once)
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
+    console.log('Database result:', result);
+
+
     const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
 
     console.log('User inserted successfully:', result);
