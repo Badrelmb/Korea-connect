@@ -99,6 +99,8 @@ app.post('/signup', (req, res) => {
         res.status(500).json({ message: 'Error registering user' });
       });
   });
+  console.log('Received data:', req.body);
+
 });
 
 
