@@ -76,33 +76,30 @@ app.get('/events', (req, res) => {
     });
 });
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const { username, email, phone, country_code, nationality, password } = req.body;
 
+  // Validate incoming data
   if (!username || !email || !phone || !country_code || !nationality || !password) {
-    return res.status(400).json({ message: 'All fields are required.' }); // Error response
+    return res.status(400).json({ message: 'All fields are required.' });
   }
 
-  // Hash the password
-  bcrypt.hash(password, 10, (err, hashedPassword) => {
-    if (err) {
-      console.error('Error hashing password:', err);
-      return res.status(500).json({ message: 'Error hashing password' });
-    }
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert user into database
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
-    db.query(query, [username, email, phone, country_code, nationality, hashedPassword])
-      .then(() => {
-        // Send a success response with a message
-        res.status(201).json({ message: 'User registered successfully!' });
-      })
-      .catch((err) => {
-        console.error('Error inserting user:', err);
-        res.status(500).json({ message: 'Error registering user.' }); // Error response
-      });
-  });
+    await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
+
+    // Send success response
+    res.status(201).json({ message: 'User registered successfully!' });
+  } catch (err) {
+    console.error('Error during signup:', err);
+    res.status(500).json({ message: 'Error registering user. Please try again.' });
+  }
 });
+
 
 
 
