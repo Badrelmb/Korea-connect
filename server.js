@@ -76,9 +76,12 @@ app.get('/events', (req, res) => {
     });
 });
 
-// Signup
 app.post('/signup', (req, res) => {
   const { username, email, phone, country_code, nationality, password } = req.body;
+
+  if (!username || !email || !phone || !country_code || !nationality || !password) {
+    return res.status(400).json({ message: 'All fields are required.' }); // Return proper JSON error
+  }
 
   // Hash the password
   bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -91,17 +94,15 @@ app.post('/signup', (req, res) => {
     const query = 'INSERT INTO users (username, email, phone, country_code, nationality, password) VALUES ($1, $2, $3, $4, $5, $6)';
     db.query(query, [username, email, phone, country_code, nationality, hashedPassword])
       .then(() => {
-        // Send a success response
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully' }); // Return success response
       })
       .catch((err) => {
         console.error('Error inserting user:', err);
-        res.status(500).json({ message: 'Error registering user' });
+        res.status(500).json({ message: 'Error registering user' }); // Return proper JSON error
       });
   });
-  console.log('Received data:', req.body);
-
 });
+
 
 
 // Login

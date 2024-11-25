@@ -376,6 +376,8 @@
           password: formData.get("password"),
         };
 
+        console.log("Sending data:", data); // Log the data being sent
+
         try {
           // Send a POST request to the server
           const response = await fetch(
@@ -386,29 +388,32 @@
               body: JSON.stringify(data),
             }
           );
-          console.log("Response received:", response);
 
+          console.log("Response received:", response); // Log the raw response
+
+          // Parse response (this is where the issue may be)
           const result = await response.json();
+          console.log("Parsed result:", result);
+
           if (response.ok) {
-            // Display the success message
+            // Display success message
             const message = document.createElement("p");
-            message.textContent = result.message;
+            message.textContent = result.message || "Signup successful!";
             message.style.color = "green";
             form.appendChild(message);
-
-            // Redirect to index.html after a short delay
-            setTimeout(() => {
-              window.location.href = "index.html";
-            }, 2000); // Redirect after 4 seconds
           } else {
-            // Display an error message
+            // Display error message
             const errorMessage = document.createElement("p");
-            errorMessage.textContent = result.message;
+            errorMessage.textContent = result.message || "An error occurred.";
             errorMessage.style.color = "red";
             form.appendChild(errorMessage);
           }
         } catch (error) {
-          console.error("Error:", error);
+          console.error("Error parsing response:", error); // Log parsing errors
+          const errorMessage = document.createElement("p");
+          errorMessage.textContent = "An unexpected error occurred.";
+          errorMessage.style.color = "red";
+          form.appendChild(errorMessage);
         }
       });
     </script>
