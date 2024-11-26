@@ -4,7 +4,6 @@
   "description": "Korea-connect server",
   "main": "script.js",
   "scripts": {
-    "test": "Hello World",
     "start": "node server.js"
   },
   "author": "",
