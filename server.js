@@ -18,6 +18,7 @@ app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 
