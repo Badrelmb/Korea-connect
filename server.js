@@ -18,9 +18,9 @@ app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
+
+// Serve static files (HTML, CSS, images, etc.) from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 // PostgreSQL connection
 const db = new Pool({
@@ -34,7 +34,6 @@ db.connect()
   .then(() => console.log('Connected to Supabase PostgreSQL database.'))
   .catch((err) => console.error('Error connecting to the database:', err));
 
-
 // File upload setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, 'uploads/'),
@@ -43,10 +42,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Routes
+// Serve the index page (as static file or route)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Route for the login page
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+// Route for the signup page
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+});
+
+// Test database connection
 app.get('/test-db', async (req, res) => {
   try {
     const result = await db.query('SELECT 1;');
@@ -55,19 +66,8 @@ app.get('/test-db', async (req, res) => {
     res.status(500).json({ message: 'Database connection failed.', error: err.message });
   }
 });
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Route for the login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
-});
-
-// Route for the signup page
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'signup.html'));
-});
-
+// Route to create an event
 app.post('/create-event', upload.single('eventPhoto'), (req, res) => {
   const { title, category, eventDate, eventTime, location, participants_limit, description } = req.body;
   const eventPhoto = req.file ? `/uploads/${req.file.filename}` : null;
@@ -81,6 +81,7 @@ app.post('/create-event', upload.single('eventPhoto'), (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Error creating event', error: err.message }));
 });
 
+// Route to fetch all events
 app.get('/events', (req, res) => {
   const query = 'SELECT * FROM events ORDER BY event_date, event_time';
   db.query(query)
@@ -88,6 +89,7 @@ app.get('/events', (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Error fetching events', error: err.message }));
 });
 
+// Route to signup a new user
 app.post('/signup', async (req, res) => {
   const { username, email, phone, country_code, nationality, password } = req.body;
 
@@ -108,6 +110,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+// Route to login a user
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
