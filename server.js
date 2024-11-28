@@ -42,7 +42,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Routes
-app.get('/', (req, res) => res.send('Welcome to Korea Connect API'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.get('/test-db', async (req, res) => {
   try {
