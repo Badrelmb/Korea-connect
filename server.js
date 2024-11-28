@@ -55,6 +55,18 @@ app.get('/test-db', async (req, res) => {
     res.status(500).json({ message: 'Database connection failed.', error: err.message });
   }
 });
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route for the login page
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+// Route for the signup page
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'signup.html'));
+});
 
 app.post('/create-event', upload.single('eventPhoto'), (req, res) => {
   const { title, category, eventDate, eventTime, location, participants_limit, description } = req.body;
