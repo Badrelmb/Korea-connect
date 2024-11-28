@@ -19,15 +19,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
+
+
 // PostgreSQL connection
 const db = new Pool({
-  connectionString: process.env.DB_CONNECTION_STRING,
-  ssl: { rejectUnauthorized: false },
+  connectionString: process.env.DATABASE_URL, // Supabase connection string
+  ssl: {
+    rejectUnauthorized: false, // Allow self-signed certificates
+  },
 });
 
 db.connect()
-  .then(() => console.log('Connected to Neon PostgreSQL database.'))
+  .then(() => console.log('Connected to Supabase PostgreSQL database.'))
   .catch((err) => console.error('Error connecting to the database:', err));
+
 
 // File upload setup
 const storage = multer.diskStorage({
@@ -117,4 +122,3 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   console.log('Attempting to connect to the database...');
 });
-
