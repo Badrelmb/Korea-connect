@@ -100,7 +100,7 @@ app.post('/signup', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const query = `
-      INSERT INTO users (username, email, phone, country_code, nationality, password)
+      INSERT INTO auth.users (username, email, phone, country_code, nationality, password)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, username, email;
     `;
     const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
