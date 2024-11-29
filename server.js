@@ -114,7 +114,7 @@ app.post('/signup', async (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const query = 'SELECT * FROM users WHERE username = $1';
+  const query = 'SELECT * FROM auth.users WHERE username = $1';
   db.query(query, [username])
     .then((results) => {
       if (results.rows.length === 0) {
