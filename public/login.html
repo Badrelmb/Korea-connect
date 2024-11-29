@@ -218,67 +218,66 @@
       </header>
 
       <!-- Login Form -->
-      <div class="form-container">
-        <h1 data-text="Login">Login</h1>
-        <form action="my_event.html" method="POST">
-          <div class="form-group">
-            <label for="username" data-text="Username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="password" data-text="Password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-          </div>
+    <div class="form-container">
+  <h1 data-text="Login">Login</h1>
+  <form id="login-form" method="POST">
+    <div class="form-group">
+      <label for="username" data-text="Username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Username"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password" data-text="Password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+    </div>
 
-          <button type="submit" id="login-btn" data-text="Login">Login</button>
+    <button type="submit" id="login-btn" data-text="Login">Login</button>
+  </form>
+</div>
+
           <script>
-            document
-              .getElementById("login-btn")
-              .addEventListener("click", async (event) => {
-                event.preventDefault(); // Prevent default form submission
+     document.getElementById("login-form").addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent default form submission
 
-                // Collect form data
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
+  // Collect form data
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-                try {
-                  // Send a POST request to the server
-                  const response = await fetch(
-                    "https://korea-connect.onrender.com/signup",
-                    {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ username, password }),
-                    }
-                  );
+  try {
+    // Send a POST request to the backend login endpoint
+    const response = await fetch("https://korea-connect.onrender.com/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-                  const result = await response.json();
+    const result = await response.json();
 
-                  if (response.ok) {
-                    // Display success message (optional) and redirect to the profile page
-                    alert(result.message); // Optionally display a success alert
-                    window.location.href = "my_event.html"; // Redirect to the user's event page
-                  } else {
-                    // Display error message
-                    alert(result.message); // Show an error alert
-                  }
-                } catch (error) {
-                  console.error("Error:", error);
-                  alert("Error logging in. Please try again.");
-                }
-              });
+    if (response.ok) {
+      // Success: Optionally store the token in local storage or redirect to a new page
+      alert(result.message); // Show a success message
+      window.location.href = "my_event.html"; // Redirect to a new page after login
+    } else {
+      // Error: Show the error message
+      alert(result.message); // Show an error message
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error logging in. Please try again.");
+  }
+});
+
           </script>
 
           <!-- Kakao Login Button -->
