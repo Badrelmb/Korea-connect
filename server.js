@@ -100,7 +100,7 @@ app.post('/signup', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const query = `
-      INSERT INTO auth.users (username, email, phone, country_code, nationality, password)
+      INSERT INTO public.users (username, email, phone, country_code, nationality, password)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, username, email;
     `;
     const result = await db.query(query, [username, email, phone, country_code, nationality, hashedPassword]);
@@ -114,7 +114,7 @@ app.post('/signup', async (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const query = 'SELECT * FROM auth.users WHERE username = $1';
+  const query = 'SELECT * FROM public.users WHERE username = $1';
   db.query(query, [username])
     .then((results) => {
       if (results.rows.length === 0) {
