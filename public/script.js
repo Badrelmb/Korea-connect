@@ -1,3 +1,16 @@
+import { getSessionUser } from './session.js';
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const user = await getSessionUser();
+  if (user) {
+    const profileNameElement = document.querySelector(".profile-container h4");
+    profileNameElement.textContent = user.name; // Update the profile name
+  }
+});
+
+// Existing code continues here...
+
+
 const textArray = [
   "Join exciting events.",
   "Connect with locals and expats.",
