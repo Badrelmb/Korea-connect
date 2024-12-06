@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -12,7 +13,24 @@ dotenv.config(); // Load environment variables
 const app = express();
 const port = process.env.PORT || 4000;
 const jwtSecret = process.env.JWT_SECRET;
+// Middleware to parse JSON bodies (for login form submission)
+app.use(express.json());
 
+// Session middleware setup
+app.use(session({
+    secret: 'your-secret-key', // Change this to a random secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }  // Set 'secure: true' if using https
+}));
+
+// Session middleware setup
+app.use(session({
+    secret: 'admin123', // Change this to a random secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }  // Set 'secure: true' if using https
+}));
 // Middleware
 app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender.com'] }));
 app.use(bodyParser.json());
