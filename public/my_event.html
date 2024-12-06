@@ -10,6 +10,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./NEW STYLE FOR my_event page/styles.css" />
+    <script src="./NEW STYLE FOR my_event page/dates.js"></script>
+    <script src="./NEW STYLE FOR my_event page/events.js"></script>
+    <script src="./NEW STYLE FOR my_event page/dropdowns.js"></script>
     <style>
       .profile-photo {
         width: 80px;
@@ -199,90 +203,53 @@
       </div>
     </section>
 
-    <!-- Events List Section -->
-    <section class="events-section py-5">
-      <div class="container">
-        <div class="row">
-          <!-- Sample Event Card 1 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/KoreanCooking.png"
-                class="card-img-top"
-                alt="Event Image 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Korean Cooking Workshop</h5>
-                <p class="card-text">
-                  Learn to cook authentic Korean dishes in this hands-on
-                  workshop!
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 15, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Gangnam, 123 Street</span
-                  >
-                </div>
-                <a href="event_detail.html" class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Sample Event Card 2 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/LanguageExchange.webp"
-                class="card-img-top"
-                alt="Event Image 3"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Language Exchange Meetup</h5>
-                <p class="card-text">
-                  Practice Korean with locals and improve your language skills.
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 18, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Itaewon, 456 Street</span
-                  >
-                </div>
-                <a href="event_detail.html" class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Sample Event Card 3 -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <img
-                src="KOREA-CONNECT IMG/K-POP dance.webp"
-                class="card-img-top"
-                alt="Event Image 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">K-Pop Dance Class</h5>
-                <p class="card-text">
-                  Join a fun and energetic dance class to learn the latest K-pop
-                  moves.
-                </p>
-                <div class="event-details">
-                  <span><strong>Date:</strong> November 20, 2024</span>
-                  <span
-                    ><strong>Address:</strong> Seoul, Hongdae, 789 Street</span
-                  >
-                </div>
-                <a href="event_detail.html" class="btn btn-primary"
-                  >Learn More</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="header">
+      <div class="date-navigation">
+  <button class="prev-date">&lt;</button>
+  <div class="dates"></div>
+  <button class="next-date">&gt;</button>
+</div>
+      
+
+     <div class="filters">
+  <div class="filter">
+    <button class="filter-btn" id="region-btn">
+      서울
+      <span class="dropdown-icon">▼</span>
+    </button>
+    <ul class="dropdown-menu" id="region-menu">
+     <li>모든</li>
+      <li>서울</li>
+      <li>부산</li>
+      <li>대구</li>
+      <li>인천</li>
+      <li>광주</li>
+      <li>대전</li>
+      <li>울산</li>
+      <li>제주</li>
+    </ul>
+  </div>
+  <div class="filter">
+    <button class="filter-btn" id="category-btn">
+      카테고리
+      <span class="dropdown-icon">▼</span>
+    </button>
+    <ul class="dropdown-menu" id="category-menu">
+     <li>모든</li>
+      <li>스포츠</li>
+      <li>음악</li>
+      <li>미술</li>
+      <li>요리</li>
+      <li>여행</li>
+      <li>언어 교환</li>
+    </ul>
+  </div>
+</div>
+
+    </div>
+    <div class="schedule"></div>
+      <!-- Add more event items as needed -->
+    </div>
 
     <!-- Optional JavaScript for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
