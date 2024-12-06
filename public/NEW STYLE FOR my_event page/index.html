@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="dates.js"></script>
+    <script src="events.js"></script>
+    <script src="dropdowns.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="date-navigation">
+  <button class="prev-date">&lt;</button>
+  <div class="dates"></div>
+  <button class="next-date">&gt;</button>
+</div>
+      
+
+     <div class="filters">
+  <div class="filter">
+    <button class="filter-btn" id="region-btn">
+      서울
+      <span class="dropdown-icon">▼</span>
+    </button>
+    <ul class="dropdown-menu" id="region-menu">
+     <li>모든</li>
+      <li>서울</li>
+      <li>부산</li>
+      <li>대구</li>
+      <li>인천</li>
+      <li>광주</li>
+      <li>대전</li>
+      <li>울산</li>
+      <li>제주</li>
+    </ul>
+  </div>
+  <div class="filter">
+    <button class="filter-btn" id="category-btn">
+      카테고리
+      <span class="dropdown-icon">▼</span>
+    </button>
+    <ul class="dropdown-menu" id="category-menu">
+     <li>모든</li>
+      <li>스포츠</li>
+      <li>음악</li>
+      <li>미술</li>
+      <li>요리</li>
+      <li>여행</li>
+      <li>언어 교환</li>
+    </ul>
+  </div>
+</div>
+
+    </div>
+    <div class="schedule"></div>
+      <!-- Add more event items as needed -->
+    </div>
+  </body>
+</html>
