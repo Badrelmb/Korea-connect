@@ -77,11 +77,13 @@ app.get('/signup', (req, res) => {
 
 // Route to get the currently logged-in user
 app.get('/user', (req, res) => {
+  console.log("Session data:", req.session);
   if (req.session && req.session.user) {
     // If a session exists, return the user data
     res.status(200).json(req.session.user);
   } else {
     // If no session exists, return an unauthorized error
+    console.error("No active session found");
     res.status(401).json({ message: 'Unauthorized: No active session' });
   }
 });
@@ -117,6 +119,10 @@ app.get('/events', (req, res) => {
   db.query(query)
     .then((results) => res.status(200).json({ message: 'Events fetched successfully', events: results.rows }))
     .catch((err) => res.status(500).json({ message: 'Error fetching events', error: err.message }));
+});
+app.use((req, res, next) => {
+  console.log(`Request received: ${req.method} ${req.url}`);
+  next();
 });
 
 // Route to signup a new user
