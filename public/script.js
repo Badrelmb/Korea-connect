@@ -1,14 +1,17 @@
 import { getSessionUser } from './session.js';
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const user = await getSessionUser();
+  const user = await getSessionUser(); // Fetch user data from the session
   if (user) {
-    const profileNameElement = document.querySelector(".profile-container h4");
-    profileNameElement.textContent = user.name; // Update the profile name
+    // Update the user name in the header
+    const profileNameElement = document.getElementById("user-name");
+    profileNameElement.textContent = user.username; // Assuming "username" is the property
+  } else {
+    // If no user is logged in, redirect to login page
+    window.location.href = "login.html";
   }
 });
 
-// Existing code continues here...
 
 
 const textArray = [
