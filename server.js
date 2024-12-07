@@ -16,6 +16,14 @@ const jwtSecret = process.env.JWT_SECRET;
 // Middleware to parse JSON bodies (for login form submission)
 app.use(express.json());
 
+// PostgreSQL connection
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL, // Supabase connection string
+  ssl: {
+    rejectUnauthorized: false, // Allow self-signed certificates
+  },
+});
+
 const pgSession = require('connect-pg-simple')(session);
 // Session middleware setup
 app.use(session({
@@ -38,13 +46,7 @@ app.use('/uploads', express.static('uploads'));
 // Serve static files (HTML, CSS, images, etc.) from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// PostgreSQL connection
-const db = new Pool({
-  connectionString: process.env.DATABASE_URL, // Supabase connection string
-  ssl: {
-    rejectUnauthorized: false, // Allow self-signed certificates
-  },
-});
+
 
 db.connect()
   .then(() => console.log('Connected to Supabase PostgreSQL database.'))
