@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Update the user name in the header
     const profileNameElement = document.getElementById("user-name");
     profileNameElement.textContent = user.username; // Assuming "username" is the property
+
+    // Optionally, update the profile initial (e.g., the first letter of the username)
+    const profileInitElement = document.querySelector(".profile-init a");
+    profileInitElement.textContent = user.username.charAt(0).toUpperCase();
   } else {
     // If no user is logged in, redirect to login page
     window.location.href = "login.html";
