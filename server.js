@@ -33,7 +33,7 @@ app.use(session({
     secret: 'admin123', // Change this to a random secret key
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
+    cookie: { secure: process.env.NODE_ENV === 'production', sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 
