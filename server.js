@@ -16,12 +16,16 @@ const jwtSecret = process.env.JWT_SECRET;
 // Middleware to parse JSON bodies (for login form submission)
 app.use(express.json());
 
+const pgSession = require('connect-pg-simple')(session);
 // Session middleware setup
 app.use(session({
+  store: new pgSession({
+    pool: db, // Use your existing PostgreSQL pool
+  }),
     secret: 'admin123', // Change this to a random secret key
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, }  // Set 'secure: true' if using https
+    saveUninitialized: false,
+    cookie: { secure: false, sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 

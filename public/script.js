@@ -2,6 +2,7 @@ import { getSessionUser } from './session.js';
 
 document.addEventListener("DOMContentLoaded", async function () {
   const user = await getSessionUser(); // Fetch user data from the session
+  console.log("Fetched user:", user);
   if (user) {
     // Update the user name in the header
     const profileNameElement = document.getElementById("user-name");
