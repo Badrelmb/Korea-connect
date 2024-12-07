@@ -18,21 +18,15 @@ app.use(express.json());
 
 // Session middleware setup
 app.use(session({
-    secret: 'your-secret-key', // Change this to a random secret key
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }  // Set 'secure: true' if using https
-}));
-
-// Session middleware setup
-app.use(session({
     secret: 'admin123', // Change this to a random secret key
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }  // Set 'secure: true' if using https
+    cookie: { secure: false, sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, }  // Set 'secure: true' if using https
 }));
+
+
 // Middleware
-app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender.com'] }));
+app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender.com'], credentials:true, }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
@@ -158,11 +152,23 @@ app.post('/login', (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
           }
           const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: '1h' });
+          // Store user information in the session
+            req.session.user = { id: user.id, username: user.username, email: user.email };
           res.status(200).json({ message: 'Login successful', token, userProfile: user });
         })
         .catch((err) => res.status(500).json({ message: 'Error during login', error: err.message }));
     })
     .catch((err) => res.status(500).json({ message: 'Error finding user', error: err.message }));
+});
+
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Logout failed' });
+    }
+    res.clearCookie('connect.sid');
+    res.status(200).json({ message: 'Logout successful' });
+  });
 });
 
 // Start server
