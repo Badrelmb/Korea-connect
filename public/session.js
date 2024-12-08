@@ -5,7 +5,7 @@ async function getSessionUser() {
   try {
     const response = await fetch("https://korea-connect.onrender.com/user", {
       method: "GET",
-      credentials: "include", // Ensures cookies are sent
+      credentials: true , // Ensures cookies are sent
     });
     if (!response.ok) {
       throw new Error(`Failed to fetch user: ${response.statusText}`);
