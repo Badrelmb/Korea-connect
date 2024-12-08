@@ -1,0 +1,251 @@
+/* Reset Styles */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ font-family: Arial, sans-serif;
+ background-color: #f9f9f9;
+ color: #333;
+}
+
+.header {
+ background-color: #fff;
+ padding: 10px;
+ border-bottom: 1px solid #ddd;
+}
+
+.filters {
+ display: flex;
+ gap: 15px;
+ justify-content: center;
+ margin: 20px 0;
+}
+
+.filter {
+ position: relative;
+}
+
+.filter-btn {
+ border: 2px solid #007bff;
+ color: #007bff;
+ background-color: #fff;
+ font-size: 16px;
+ font-weight: bold;
+ padding: 8px 20px;
+ border-radius: 50px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ gap: 5px;
+ transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+ background-color: #007bff;
+ color: #fff;
+}
+
+.dropdown-icon {
+ font-size: 12px;
+}
+
+.dropdown-menu {
+ display: none;
+ position: absolute;
+ top: 50px;
+ left: 0;
+ background-color: #fff;
+ border: 1px solid #ddd;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ padding: 10px 0;
+ list-style: none;
+ z-index: 100;
+ width: 150px;
+}
+
+.dropdown-menu li {
+ padding: 10px 20px;
+ cursor: pointer;
+ transition: background-color 0.2s ease;
+}
+
+.dropdown-menu li:hover {
+ background-color: #f3f3f3;
+}
+
+select {
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ padding: 5px 10px;
+ font-size: 14px;
+ background-color: #fff;
+ cursor: pointer;
+ appearance: none;
+ width: 150px;
+}
+
+select:focus {
+ border-color: #007bff;
+ outline: none;
+}
+
+/* Date navigation container */
+.date-navigation {
+ 
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 20px 0;
+}
+
+/* Navigation buttons */
+.date-navigation .prev-date,
+.date-navigation .next-date {
+ margin: 5px;
+ background-color: #ffffff;
+ color: #007bff;
+ border: solid 1px #007bff;
+ padding: 10px 15px;
+ font-size: 16px;
+ cursor: pointer;
+ border-radius: 5px;
+ transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.date-navigation .prev-date:hover,
+.date-navigation .next-date:hover {
+ background-color: #0056b3;
+ /* Darker blue on hover */
+}
+
+.date-navigation .prev-date:active,
+.date-navigation .next-date:active {
+ transform: scale(0.95);
+ /* Pressed effect */
+}
+
+/* Dates container */
+.dates {
+ display: flex;
+ gap: 20px;
+ justify-content: center;
+ overflow-x: auto;
+ padding: 0 10px;
+ flex-grow: 1;
+}
+
+/* Individual date blocks */
+.dates>div {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ width: 50px;
+ height: 70px;
+ font-size: 14px;
+ /* Light gray background */
+ border: 1px solid #007bff;
+ border-radius: 8px;
+ cursor: pointer;
+ transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dates>div:hover {
+ background-color: #007bff;
+ /* Blue on hover */
+ color: #fff;
+ transform: translateY(-3px);
+}
+
+/* Selected date */
+.dates>div.selected {
+ background-color: #007bff;
+ color: #fff;
+ font-weight: bold;
+}
+
+/* Weekend styling */
+.dates>div.weekend {
+ background-color: #ffe5e5;
+ /* Light red for weekends */
+}
+
+.dates>div.weekend.selected {
+ background-color: #d9534f;
+ /* Dark red for selected weekends */
+ color: #fff;
+}
+
+/* Date text alignment */
+.dates>div span {
+ font-size: 16px;
+}
+
+.dates>div small {
+ font-size: 12px;
+ color: #6c757d;
+ /* Muted gray for day names */
+}
+.schedule {
+ padding: 10px;
+}
+
+.event {
+ display: flex;
+ align-items: center;
+ background-color: #fff;
+ padding: 45px;
+ margin-bottom: 10px;
+ border: 1px solid #ddd;
+ border-radius: 10px;
+}
+
+.time {
+ font-size: 18px;
+ font-weight: bold;
+ margin-right: 20px;
+}
+
+.details {
+ flex: 1;
+}
+
+.details p {
+ margin-bottom: 5px;
+}
+
+.details .info {
+ color: #666;
+ font-size: 14px;
+}
+
+.status {
+ border: none;
+ padding: 5px 10px;
+ font-size: 14px;
+ border-radius: 20px;
+ cursor: pointer;
+}
+
+.status.full {
+ background-color: #f3f3f3;
+ color: #aaa;
+ cursor: not-allowed;
+}
+
+.status.closed {
+ background-color: #ff6b6b;
+ color: #fff;
+}
+
+.status.open {
+ padding: 20px;
+ background-color: #007bff;
+ color: #fff;
+ font-weight: bold;
+ font-size: 16px;
+}

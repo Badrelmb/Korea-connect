@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Korea Connect</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .profile-photo {
+        width: 80px;
+        height: 80px;
+        background-color: #007bff;
+        color: white;
+        font-size: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: 3px solid #ffffff;
+      }
+
+      .profile-photo i {
+        font-size: 1.5rem;
+      }
+
+      .profile-container {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .profile-container h4 {
+        margin-left: 10px;
+        font-size: 1.1rem;
+      }
+
+      .profile-init a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+
+      .navbar-brand img {
+        height: 100px;
+      }
+
+      /* Language toggle styles */
+      .language-toggle-container {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .language-toggle-container a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      .language-toggle-container a:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="bg-light shadow-sm position-relative">
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col-md-3 col-sm-6">
+            <a href="my_event.html" class="navbar-brand">
+              <img
+                src="KOREA-CONNECT IMG/logo_transparent.png"
+                alt="Korea Connect Logo"
+                class="img-fluid"
+              />
+            </a>
+          </div>
+          <div class="col-md-6 d-none d-lg-block">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                    >
+                      Pages
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="about.html">About</a>
+                      <a class="dropdown-item" href="event_create.html"
+                        >Create an Event</a
+                      >
+                      <a class="dropdown-item" href="blog.html">Blogs</a>
+                      <a class="dropdown-item" href="event_view.html">Events</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          <!-- Profile section placed at the top-right -->
+          <div class="col-md-3 text-right">
+            <div class="profile-container">
+              <div class="profile-photo">
+                <span class="profile-init">
+                  <a href="profile.html">J</a>
+                </span>
+              </div>
+              <h4 class="text-dark">John Doe</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Language Toggle Button in the top-right -->
+        <div class="language-toggle-container">
+          <a href="#" class="language-toggle" onclick="toggleLanguage()">EN | KR</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center bg-light py-5">
+      <div class="container">
+        <h1 id="about-title">About Korea Connect</h1>
+        <p id="about-subtitle">
+          We bring people together through shared interests and activities.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 id="about-header">About Korea Connect</h2>
+            <p id="about-text">
+              Welcome to <strong>Korea Connect</strong>, a platform dedicated to
+              connecting Koreans and expats through shared hobbies and
+              interests. Whether you're new to Korea or have lived here for
+              years, we provide opportunities for you to explore new activities,
+              meet new people, and build lasting connections.
+            </p>
+            <p id="about-details">
+              At Korea Connect, we believe that hobbies are a powerful way to
+              foster relationships. Whether it's language exchange, hiking,
+              cooking, or art, we offer events that allow you to share
+              experiences and create lasting friendships.
+            </p>
+            <p id="about-invite">
+              Join us today and start building your community, one hobby at a
+              time!
+            </p>
+          </div>
+          <div class="col-md-6">
+            <img
+              src="KOREA-CONNECT IMG/KoreaConnect-intro.webp"
+              alt="Korea Connect Community"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Optional JavaScript for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Translation data
+      const translations = {
+        en: {
+          "about-title": "About Korea Connect",
+          "about-subtitle":
+            "We bring people together through shared interests and activities.",
+          "about-header": "About Korea Connect",
+          "about-text":
+            "Welcome to <strong>Korea Connect</strong>, a platform dedicated to connecting Koreans and expats through shared hobbies and interests. Whether you're new to Korea or have lived here for years, we provide opportunities for you to explore new activities, meet new people, and build lasting connections.",
+          "about-details":
+            "At Korea Connect, we believe that hobbies are a powerful way to foster relationships. Whether it's language exchange, hiking, cooking, or art, we offer events that allow you to share experiences and create lasting friendships.",
+          "about-invite":
+            "Join us today and start building your community, one hobby at a time!",
+        },
+        kr: {
+          "about-title": "코리아 커넥트 소개",
+          "about-subtitle": "공유된 관심사를 통해 사람들을 연결합니다.",
+          "about-header": "코리아 커넥트 소개",
+          "about-text":
+            "<strong>코리아 커넥트</strong>에 오신 것을 환영합니다. 코리아 커넥트는 한국인과 외국인들이 취미와 관심사를 통해 서로 연결될 수 있도록 도와주는 플랫폼입니다. 한국에 처음 오셨거나 몇 년째 거주하고 계신 분이라도, 우리는 새로운 활동을 탐색하고, 새로운 사람들을 만나며, 오래도록 지속될 인연을 쌓을 수 있는 기회를 제공합니다.",
+          "about-details":
+            "코리아 커넥트에서는 취미가 사람들 간의 관계를 강화하는 강력한 방법이라고 믿습니다. 언어 교환, 하이킹, 요리, 예술 등을 포함한 다양한 이벤트를 통해 경험을 나누고 지속적인 우정을 쌓을 수 있습니다.",
+          "about-invite":
+            "오늘 코리아 커넥트에 가입하여 취미를 통해 커뮤니티를 구축해 보세요!",
+        },
+      };
+
+      function toggleLanguage() {
+        let currentLang = document.documentElement.lang;
+        let newLang = currentLang === "en" ? "kr" : "en";
+        document.documentElement.lang = newLang;
+
+        // Update all text
+        for (let key in translations[newLang]) {
+          document.getElementById(key).innerHTML = translations[newLang][key];
+        }
+      }
+
+      // Initialize with English by default
+      document.documentElement.lang = "en";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Korea Connect</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* Hero Section with Background Image */
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-image: url("/KOREA-CONNECT IMG/Animation-img.webp");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Form container styling */
+      .form-container {
+        max-width: 500px;
+        padding: 20px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Semi-transparent background */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Styling for headings */
+      .form-container h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      /* Style form groups */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      /* Style labels */
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      /* Style inputs */
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+
+      /* Focus effect */
+      input:focus,
+      select:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
+      /* Style the submit button */
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Hover effect for button */
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Styling for link */
+      .form-container a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .form-container a:hover {
+        text-decoration: underline;
+      }
+
+      /* Style the header to match homepage */
+      #header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: transparent;
+      }
+
+      #header .logo img {
+        height: 100px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      nav ul li {
+        display: inline;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #003366;
+        font-weight: bold;
+      }
+
+      .login-btn,
+      .signup-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .login-btn {
+        background-color: #003366;
+      }
+
+      .signup-btn {
+        background-color: #6699cc;
+      }
+
+      .login-btn:hover {
+        background-color: #002244;
+      }
+
+      .signup-btn:hover {
+        background-color: #336699;
+      }
+
+      /* Additional styles for phone number input */
+      .phone-container {
+        display: flex;
+        align-items: center; /* Center the items vertically */
+      }
+
+      #country-code {
+        font-size: 0.8em; /* Smaller font size for country code */
+        width: 80px; /* Adjust width as needed */
+        margin-right: 10px; /* Space between country code and phone number */
+        border: 1px solid #ddd; /* Add border for better visibility */
+        border-radius: 4px; /* Rounded corners for a softer look */
+        padding: 5px; /* Add padding for spacing inside the dropdown */
+        appearance: none; /* Remove default styling on some browsers */
+      }
+
+      #phone {
+        flex: 1; /* Take remaining space */
+        font-size: 1em; /* Standard font size for phone number */
+        border: 1px solid #ddd; /* Add border for visibility */
+        border-radius: 4px; /* Rounded corners */
+        padding: 5px; /* Padding inside the input */
+      }
+
+      /* Add a focus effect for better accessibility */
+      #country-code:focus,
+      #phone:focus {
+        border-color: #007bff; /* Change border color on focus */
+        outline: none; /* Remove default outline */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-section">
+      <!-- Header with logo and navigation -->
+      <header id="header">
+        <div class="logo">
+          <img
+            src="/KOREA-CONNECT IMG/logo_transparent.png"
+            alt="Korea Connect Logo"
+          />
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#" class="language-toggle" id="language-toggle"
+                >EN | KR</a
+              >
+            </li>
+            <li>
+              <a href="login.html" class="login-btn" data-text="Login">Login</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Sign Up Form -->
+      <div class="form-container">
+        <h1 data-text="Sign Up">Sign Up</h1>
+        <form action="https://korea-connect.onrender.com/signup" method="POST">
+          <div class="form-group">
+            <label for="username" data-text="Username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" data-text="Email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone" data-text="Phone Number">Phone Number</label>
+            <div class="phone-container">
+              <select id="country-code" name="country-code">
+                <option value="+1">+1 (USA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+82">+82 (South Korea)</option>
+                <option value="+977">+977 (Nepal)</option>
+                <option value="+91">+91 (India)</option>
+                <option value="+84">+84 (Vietnam)</option>
+                <option value="+976">+976 (Mongolia)</option>
+                <option value="+86">+86 (China)</option>
+                <option value="+212">+212 (Morocco)</option>
+                <option value="+998">+998 (Uzbekistan)</option>
+                <option value="+7">+7 (Russia)</option>
+                <option value="+92">+92 (Pakistan)</option>
+                <option value="+880">+880 (Bangladesh)</option>
+                <option value="+95">+95 (Myanmar)</option>
+              </select>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Phone Number"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nationality" data-text="Nationality">Nationality</label>
+            <select id="nationality" name="nationality" required>
+              <option value="Korean">Korean</option>
+              <option value="Foreigner">Foreigner</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="password" data-text="Password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirm_password" data-text="Confirm Password"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+          <button type="submit" data-text="Sign Up">Sign Up</button>
+        </form>
+        <a href="login.html" data-text="Login">Login</a>
+      </div>
+    </div>
+
+    <script>
+      // Define translations for English and Korean
+      const translations = {
+        en: {
+          "Sign Up": "Sign Up",
+          Username: "Username",
+          Email: "Email",
+          "Phone Number": "Phone Number",
+          Password: "Password",
+          "Confirm Password": "Confirm Password",
+          Login: "Login",
+          "Sign Up": "Sign Up",
+        },
+        kr: {
+          "Sign Up": "가입하기",
+          Username: "사용자 이름",
+          Email: "이메일",
+          "Phone Number": "전화 번호",
+          Password: "비밀번호",
+          "Confirm Password": "비밀번호 확인",
+          Login: "로그인",
+          "Sign Up": "가입하기",
+        },
+      };
+
+      // Set default language (English)
+      let currentLanguage = "en";
+
+      // Function to toggle between languages
+      function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
+
+        // Update text on page
+        document.querySelectorAll("[data-text]").forEach((element) => {
+          const key = element.getAttribute("data-text");
+          if (translations[currentLanguage][key]) {
+            element.innerText = translations[currentLanguage][key];
+          }
+        });
+
+        // Change language toggle button text
+        const toggleButton = document.getElementById("language-toggle");
+        toggleButton.innerText =
+          currentLanguage === "en" ? "EN | KR" : "KR | EN";
+      }
+
+      // Add event listener to language toggle button
+      document
+        .getElementById("language-toggle")
+        .addEventListener("click", toggleLanguage);
+      const form = document.querySelector("form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {
+          username: formData.get("username"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          country_code: formData.get("country-code"),
+          nationality: formData.get("nationality"),
+          password: formData.get("password"),
+        };
+
+        console.log("Sending data:", data);
+
+        try {
+          const response = await fetch(
+            "https://korea-connect.onrender.com/signup",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            }
+          );
+
+          console.log("Response received:", response);
+
+          // Safely handle empty responses
+          let result;
+          try {
+            result = await response.json();
+          } catch (err) {
+            console.error("Failed to parse response JSON:", err);
+            throw new Error("Invalid response from server.");
+          }
+
+          if (response.ok) {
+            console.log("Signup successful:", result);
+            const message = document.createElement("p");
+            message.textContent = result.message || "Signup successful!";
+            message.style.color = "green";
+            form.appendChild(message);
+          } else {
+            console.error("Signup failed:", result);
+            const errorMessage = document.createElement("p");
+            errorMessage.textContent = result.message || "An error occurred.";
+            errorMessage.style.color = "red";
+            form.appendChild(errorMessage);
+          }
+        } catch (error) {
+          console.error("Error during signup:", error);
+          const errorMessage = document.createElement("p");
+          errorMessage.textContent =
+            "An unexpected error occurred. Please try again.";
+          errorMessage.style.color = "red";
+          form.appendChild(errorMessage);
+        }
+      });
+    </script>
+  </body>
+</html>
