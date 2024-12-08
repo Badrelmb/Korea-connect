@@ -173,6 +173,18 @@ app.post('/login', (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Error finding user', error: err.message }));
 });
 
+app.get('/user', (req, res) => {
+  console.log("Session data:", req.session); // Debug log
+
+  if (req.session && req.session.user) {
+    res.status(200).json(req.session.user);
+  } else {
+    console.error("No active session found");
+    res.status(401).json({ message: 'Unauthorized: No active session' });
+  }
+});
+
+
 app.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {

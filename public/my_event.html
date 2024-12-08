@@ -260,7 +260,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
         try {
-          const response = await fetch("http://localhost:4000/events");
+          const response = await fetch("http://localhost:4000/events", "https://korea-connect.onrender.com");
           const events = await response.json();
 
           const eventsSection = document.querySelector(".events-section .row");
