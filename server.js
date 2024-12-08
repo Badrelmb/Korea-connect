@@ -147,6 +147,7 @@ app.post('/login', (req, res) => {
   db.query(query, [username])
     .then((results) => {
       if (results.rows.length === 0) {
+        console.log("Session data after login:", req.session);
         return res.status(401).json({ message: 'User not found' });
       }
 
@@ -154,14 +155,17 @@ app.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then((isMatch) => {
           if (!isMatch) {
+            console.log("Session data after login:", req.session);
             return res.status(401).json({ message: 'Invalid credentials' });
           }
           const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: '1h' });
           // Store user information in the session
             req.session.user = { id: user.id, username: user.username, email: user.email };
+            console.log("Session data after login:", req.session);
           res.status(200).json({ message: 'Login successful', token, userProfile: user });
         })
-        .catch((err) => res.status(500).json({ message: 'Error during login', error: err.message }));
+        .catch((err) => res.status(500).json({ 
+          message: 'Error during login', error: err.message }));
     })
     .catch((err) => res.status(500).json({ message: 'Error finding user', error: err.message }));
 });
