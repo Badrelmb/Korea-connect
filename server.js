@@ -112,7 +112,9 @@ app.get('/events', (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Error fetching events', error: err.message }));
 });
 app.use((req, res, next) => {
+  console.log("Session middleware active");
   console.log(`Request received: ${req.method} ${req.url}`);
+  console.log("Cookies:", req.cookies);
   next();
 });
 
