@@ -36,7 +36,7 @@ app.use(session({
     secret: 'admin123', 
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true,sameSite: 'none' ,    domain: '.korea-connect.onrender.com',maxAge: 86400000, httpOnly: true,},  // Set 'secure: true' if using https
+    cookie: { secure: true,sameSite: 'lax', maxAge: 86400000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 
