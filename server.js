@@ -171,6 +171,7 @@ app.get('/user', (req, res) => {
   console.log("Session data:", req.session); // Debug log
 
   if (req.session && req.session.user) {
+     console.log("Session User Data:", req.session.user)
     res.status(200).json(req.session.user);
   } else {
     console.error("No active session found");
