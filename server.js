@@ -75,18 +75,6 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'signup.html'));
 });
 
-// Route to get the currently logged-in user
-app.get('/user', (req, res) => {
-  console.log("Session data:", req.session);
-  if (req.session && req.session.user) {
-    // If a session exists, return the user data
-    res.status(200).json(req.session.user);
-  } else {
-    // If no session exists, return an unauthorized error
-    console.error("No active session found");
-    res.status(401).json({ message: 'Unauthorized: No active session' });
-  }
-});
 
 
 // Test database connection
@@ -174,6 +162,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
+  console.log("Cookies received:", req.cookies); // Debug log
   console.log("Session data:", req.session); // Debug log
 
   if (req.session && req.session.user) {
