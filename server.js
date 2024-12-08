@@ -41,7 +41,7 @@ app.use(session({
 
 
 // Middleware
-app.use(cors({ origin: ['http://127.0.0.1:5501', 'https://korea-connect.onrender.com'], credentials:true, }));
+app.use(cors({ origin: ['https://korea-connect.onrender.com'], credentials:true, }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
