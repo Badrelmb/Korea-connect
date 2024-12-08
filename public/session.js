@@ -3,18 +3,20 @@
 // Function to fetch the current logged-in user's data
 async function getSessionUser() {
   try {
-    const response = await fetch("https://korea-connect.onrender.com/user"); // Adjust this URL based on your backend
-    if (response.status === 200) {
-      return await response.json(); // Return the user object if logged in
-    } else {
-      console.warn("User not logged in");
-      return null;
+    const response = await fetch("https://korea-connect.onrender.com/user", {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch user: ${response.statusText}`);
     }
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching user session:", error);
-    return null;
+    console.error("Error fetching user:", error);
+    return null; // Return null if the session does not exist
   }
 }
+
 
 // Export the function so it can be imported elsewhere
 export { getSessionUser };
