@@ -8,6 +8,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+
 
 dotenv.config(); // Load environment variables
 const app = express();
@@ -34,7 +36,7 @@ app.use(session({
     secret: 'admin123', // Change this to a random secret key
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true,sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
+    cookie: { secure: true,sameSite: 'none',maxAge: 86400000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 
@@ -161,7 +163,7 @@ app.post('/login', (req, res) => {
     })
     .catch((err) => res.status(500).json({ message: 'Error finding user', error: err.message }));
 });
-
+app.use(cookieParser());
 app.get('/user', (req, res) => {
   console.log("Cookies received:", req.cookies); // Debug log
   console.log("Session data:", req.session); // Debug log
