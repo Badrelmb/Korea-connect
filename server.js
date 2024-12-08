@@ -33,10 +33,10 @@ app.use(session({
     pool: db, // Use your existing PostgreSQL pool
   }),
 
-    secret: 'admin123', // Change this to a random secret key
+    secret: 'admin123', 
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true,sameSite: 'none',maxAge: 86400000, httpOnly: true,},  // Set 'secure: true' if using https
+    cookie: { secure: true,sameSite: 'none' ,    domain: '.korea-connect.onrender.com',maxAge: 86400000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 
