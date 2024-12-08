@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     profileInitElement.textContent = user.username.charAt(0).toUpperCase();
   } else {
     // If no user is logged in, redirect to login page
-    window.location.href = "login.html";
+     console.warn("No user data found. Redirecting to login page...");
+    // window.location.href = "login.html";
   }
 });
 
