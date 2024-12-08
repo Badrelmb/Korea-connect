@@ -31,10 +31,10 @@ app.use(session({
     pool: db, // Use your existing PostgreSQL pool
   }),
 
-    secret: process.env.SESSION_SECRET || 'admin123', // Change this to a random secret key
+    secret: 'admin123', // Change this to a random secret key
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === 'production', sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
+    cookie: { secure: true,sameSite: 'none',maxAge: 24 * 60 * 60 * 1000, httpOnly: true,},  // Set 'secure: true' if using https
 }));
 
 
