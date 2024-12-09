@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="signup.js"></script>
     <title>Sign Up - Korea Connect</title>
     <style>
@@ -227,7 +229,7 @@
       <!-- Sign Up Form -->
       <div class="form-container">
         <h1 data-text="Sign Up">Sign Up</h1>
-        <form action="https://korea-connect.onrender.com/signup">
+        <form method="POST">
           <div class="form-group">
             <label for="username" data-text="Username">Username</label>
             <input
