@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="login.js"></script>
     <style>
       /* Reset some default styles */
       body,
@@ -221,7 +222,7 @@
       <!-- Login Form -->
       <div class="form-container">
         <h1 data-text="Login">Login</h1>
-        <form id="login-form" method="POST">
+        <form id="login-form">
           <div class="form-group">
             <label for="username" data-text="Username">Username</label>
             <input
@@ -262,43 +263,6 @@
       </div>
     </div>
 
-    <script>
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault(); // Prevent default form submission
-
-          // Collect form data
-          const username = document.getElementById("username").value;
-          const password = document.getElementById("password").value;
-
-          try {
-            // Send a POST request to the backend login endpoint
-            const response = await fetch(
-              "https://korea-connect.onrender.com/login",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }),
-              }
-            );
-
-            const result = await response.json();
-
-            if (response.ok) {
-              // Success: Optionally store the token in local storage or redirect to a new page
-              alert(result.message); // Show a success message
-              window.location.href = "my_event.html"; // Redirect to a new page after login
-            } else {
-              // Error: Show the error message
-              alert(result.message); // Show an error message
-            }
-          } catch (error) {
-            console.error("Error:", error);
-            alert("Error logging in. Please try again.");
-          }
-        });
-    </script>
     <!-- Kakao Login Script -->
     <script>
       // Initialize Kakao SDK
