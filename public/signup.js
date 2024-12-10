@@ -35,23 +35,25 @@ form.addEventListener("submit", async (event) => {
     console.log("User signed up:", user);
 
     // Step 2: Store additional user information in the 'users' table
-    const { data: profile, error: profileError } = await supabase
-      .from("users")
-      .insert({
-        username: formData.get("username"),
-        email: email,
-        phone: formData.get("phone"),
-        country_code: formData.get("country-code"),
-        nationality: formData.get("nationality"),
-      });
+    if (user) {
+      const { data: profile, error: profileError } = await supabase
+        .from("users")
+        .insert({
+          username: formData.get("username"),
+          email: email,
+          phone: formData.get("phone"),
+          country_code: formData.get("country-code"),
+          nationality: formData.get("nationality"),
+        });
 
-    if (profileError) {
-      console.error("Error saving user profile:", profileError.message);
-      alert("Signup failed while saving user profile.");
-      return;
+      if (profileError) {
+        console.error("Error saving user profile:", profileError.message);
+        alert("Signup failed while saving user profile.");
+        return;
+      }
+
+      console.log("User profile saved:", profile);
     }
-
-    console.log("User profile saved:", profile);
 
     // Step 3: Redirect or show success message
     alert("Signup successful! You can now log in.");
