@@ -1,5 +1,9 @@
-
 import supabase from "../config/supabaseClient.js";
+
+const form = document.querySelector("form");
+if (!form) {
+  console.error("Form not found. Check your HTML structure.");
+}
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
