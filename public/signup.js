@@ -1,4 +1,6 @@
 
+import supabase from "../config/supabaseClient.js";
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
