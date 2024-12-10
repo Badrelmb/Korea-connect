@@ -202,25 +202,23 @@
             </nav>
           </div>
           <!-- Profile section placed at the top-right -->
-          <div class="col-md-3 text-right">
-           
-             <div class="profile-container">
-               
-  <label for="profile-photo-input" class="profile-photo">
-    <a href="profile.html"></a>
-    <img id="profile-photo-img" src="default-photo.png" alt="Profile Photo" />
+         <div class="col-md-3 text-right">
+  <div class="profile-container">
+    <!-- Profile Photo Holder -->
+    <a href="profile.html" class="profile-photo">
+      <img
+        id="profile-photo-img"
+        src="default-photo.png"
+        alt="Profile Photo"
+        style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid white;"
+      />
     </a>
-  </label>
-  <input
-    type="file"
-    id="profile-photo-input"
-    accept="image/*"
-    style="display: none;"
-  />
-  
-  <button class="logout-btn">Logout</button>
+
+    <!-- Logout Button -->
+    <button class="logout-btn">Logout</button>
+  </div>
 </div>
-</div>
+
                
               
             </div>
