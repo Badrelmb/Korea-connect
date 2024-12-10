@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // Prevent default form submission
 
     // Collect user input
-    const email = document.getElementById("username").value; // Using email as username
+    const email = document.getElementById("email").value; // Using email as username
     const password = document.getElementById("password").value;
 
     try {
