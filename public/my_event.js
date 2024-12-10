@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   displayUserProfile(user);
 });
 
-
+// Function to display user profile photo
 async function displayUserProfile(user) {
   // Get profile photo from user metadata
   const photoPath = user.user_metadata?.profile_photo;
@@ -37,14 +37,14 @@ async function displayUserProfile(user) {
 
   if (photoPath) {
     // Display the user's profile photo
-    profilePhotoImg.src = `https://your-supabase-bucket-url/${photoPath}`;
+    profilePhotoImg.src = `https://YOUR_SUPABASE_STORAGE_URL/${photoPath}`;
   } else {
     // Display the default profile photo
-    profilePhotoImg.src = "./default-photo.jpg";
+    profilePhotoImg.src = "default-photo.png";
   }
 }
 
-
+// Handle logout functionality
 document.addEventListener("DOMContentLoaded", function () {
   const logoutButton = document.querySelector(".logout-btn");
 
@@ -58,4 +58,45 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+});
+
+// Handle profile photo upload
+document.addEventListener("DOMContentLoaded", function () {
+  const profilePhotoInput = document.getElementById("profile-photo-input");
+  const profilePhotoImg = document.getElementById("profile-photo-img");
+
+  profilePhotoInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Upload photo to Supabase Storage
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("profile-photos")
+      .upload(`profile-${Date.now()}-${file.name}`, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
+
+    if (uploadError) {
+      console.error("Error uploading photo:", uploadError.message);
+      alert("Failed to upload photo. Please try again.");
+      return;
+    }
+
+    // Update user's metadata with the photo path
+    const photoPath = uploadData.path;
+    const { error: metadataError } = await supabase.auth.updateUser({
+      data: { profile_photo: photoPath },
+    });
+
+    if (metadataError) {
+      console.error("Error updating metadata:", metadataError.message);
+      alert("Failed to save photo. Please try again.");
+      return;
+    }
+
+    // Display the uploaded photo
+    profilePhotoImg.src = `https://YOUR_SUPABASE_STORAGE_URL/${photoPath}`;
+    alert("Profile photo updated successfully!");
+  });
 });
