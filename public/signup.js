@@ -1,4 +1,4 @@
-import supabase from "../config/supabaseClient.js";
+import supabase from "./supabaseClient";
 
 const form = document.querySelector("form");
 if (!form) {
