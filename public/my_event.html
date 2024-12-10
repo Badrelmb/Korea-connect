@@ -63,24 +63,31 @@
 });
     </script>
     <style>
-      .profile-photo {
+     .profile-photo {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: solid 1px black;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  position: relative;
   cursor: pointer;
+  position: relative;
 }
 
-#profile-photo-img {
+.profile-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-#profile-photo:hover {
-  opacity: 0.8;
+#profile-photo-input {
+  display: none;
+}
+
+.profile-photo:hover {
+  border-color: #007bff;
 }
 
 
@@ -196,17 +203,19 @@
           </div>
           <!-- Profile section placed at the top-right -->
           <div class="col-md-3 text-right">
-             <div class="profile-photo" id="profile-photo">
-    <label for="profile-photo-input">
-      <img src="default-photo.png" alt="Profile Photo" id="profile-photo-img" />
-    </label>
-    <input
-      type="file"
-      id="profile-photo-input"
-      style="display: none;"
-      accept="image/*"
-    />
-  </div>
+             <div class="profile-container">
+  <label for="profile-photo-input" class="profile-photo">
+    <img id="profile-photo-img" src="default-photo.png" alt="Profile Photo" />
+  </label>
+  <input
+    type="file"
+    id="profile-photo-input"
+    accept="image/*"
+    style="display: none;"
+  />
+  <button class="logout-btn">Logout</button>
+</div>
+</div>
                
               <!-- Logout Button -->
               <button class="logout-btn">Logout</button>

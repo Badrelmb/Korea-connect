@@ -23,12 +23,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   console.log("Logged-in user:", user);
 
-  // Load the user's profile
+  // Call the next function to load the user's profile
   displayUserProfile(user);
-
-  // Set up logout button functionality
-  setupLogoutButton();
 });
+
 
 async function displayUserProfile(user) {
   // Get profile photo from user metadata
@@ -42,11 +40,12 @@ async function displayUserProfile(user) {
     profilePhotoImg.src = `https://your-supabase-bucket-url/${photoPath}`;
   } else {
     // Display the default profile photo
-    profilePhotoImg.src = "default-photo.png";
+    profilePhotoImg.src = "./default-photo.jpg";
   }
 }
 
-function setupLogoutButton() {
+
+document.addEventListener("DOMContentLoaded", function () {
   const logoutButton = document.querySelector(".logout-btn");
 
   if (logoutButton) {
@@ -59,4 +58,4 @@ function setupLogoutButton() {
       }
     });
   }
-}
+});
