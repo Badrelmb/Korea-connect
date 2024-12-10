@@ -9,7 +9,8 @@
   "author": "Badr",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.46.2-rc.3",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "connect-pg-simple": "^10.0.0",
