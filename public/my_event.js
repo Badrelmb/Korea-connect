@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayEvents(events); // Temporarily render all events without filtering
 
     // Commenting out filtersChanged listener for debugging
-    /*
+    
     document.addEventListener("filtersChanged", (e) => {
       const { selectedCity, selectedCategory, selectedDate } = e.detail;
       console.log("Filters received in my_event.js:", {
@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
       displayEvents(filteredEvents);
     });
-    */
-
+    
     // Handle Logout Button
     const logoutButton = document.querySelector(".logout-btn");
     if (logoutButton) {
