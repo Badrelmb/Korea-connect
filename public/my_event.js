@@ -44,3 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+ document.getElementById("create-event-btn").addEventListener("click", function() {
+    // Redirect the user to the event creation page
+    window.location.href = "event_create.html";
+  });
