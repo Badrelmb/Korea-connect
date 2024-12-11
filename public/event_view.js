@@ -32,10 +32,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       />
       <h1>${event.title}</h1>
       <p class="event-details">Date: ${new Date(event.event_date).toLocaleDateString()}</p>
-      <p class="event-details">Time: ${event.event_time.slice(0, 5)} (24-hour format)</p>
+      <p class="event-details">Time: ${event.event_time.slice(0, 5)} </p>
       <p class="event-details">${event.description}</p>
       <p class="event-details">Location: ${event.location}</p>
-      <a href="event_register.html?id=${event.id}" class="register-button">Join</a>
+      <button
+          class="btn btn-primary"
+          onclick="joinEvent(${event.id})"
+        >
+          Join
+        </button>
     `;
 
     // Inject the HTML content into the event-container div
@@ -45,3 +50,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Unexpected error fetching event details:", err);
   }
 });
+
+async function joinEvent(eventId) {
+  const { user } = await supabase.auth.getSession();
+
+  if (!user) {
+    alert("Please log in to join the event.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const userId = user.id;
+
+  const { data, error } = await supabase
+    .from("eventsJoined")
+    .insert([{ event_id: eventId, user_id: userId }]);
+
+  if (error) {
+    console.error("Error joining event:", error);
+    alert("An error occurred while joining the event.");
+    return;
+  }
+
+  alert("Successfully joined the event!");
+}
