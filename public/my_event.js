@@ -53,7 +53,7 @@ async function fetchEvents() {
 }
 
 // Display events
-function displayEvents(events) {
+ function displayEvents(events) {
   const eventsSection = document.querySelector(".events-section .row");
   eventsSection.innerHTML = ""; // Clear existing events
 
@@ -61,15 +61,15 @@ function displayEvents(events) {
     const eventCard = `
       <div class="col-md-4">
         <div class="card mb-4">
-          <img src="${event.event_photo}" class="card-img-top" alt="Event Image" />
           <div class="card-body">
             <h5 class="card-title">${event.title}</h5>
-            <p class="card-text">${event.description}</p>
-            <div class="event-details">
-              <span><strong>Date:</strong> ${new Date(event.event_date).toLocaleDateString()}</span>
+            <p class="card-text event-details">
+              <span><strong>${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></span>
               <span><strong>Location:</strong> ${event.location}</span>
-            </div>
-            <a href="event_view.html" class="btn btn-primary">Learn More</a>
+              <span><strong>Category:</strong> ${event.category}</span>
+            </p>
+            <p class="card-description">${event.description}</p>
+            <a href="event_view.html?id=${event.id}" class="btn btn-primary">신청가능</a>
           </div>
         </div>
       </div>
@@ -77,6 +77,8 @@ function displayEvents(events) {
     eventsSection.insertAdjacentHTML("beforeend", eventCard);
   });
 }
+
+
 
 // Filter events based on criteria
 function filterEvents(events, selectedCity, selectedCategory, selectedDate) {

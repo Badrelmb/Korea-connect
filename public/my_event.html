@@ -202,7 +202,7 @@
         </div>
         <div class="filter">
           <button class="filter-btn" id="category-btn">
-            모든 <span class="dropdown-icon">▼</span>
+            카테고리 <span class="dropdown-icon">▼</span>
           </button>
           <ul class="dropdown-menu" id="category-menu">
             <li>모든</li>
@@ -219,8 +219,27 @@
 
     <section class="events-section">
       <div class="container">
-        <div class="row">
-          <!-- Events will be dynamically injected here by JavaScript -->
+        <div class="row" id="events-list">
+          <!-- Event cards will be dynamically injected here -->
+          <!-- Example of a single event card -->
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Event Title</h5>
+                <p class="card-text event-details">
+                  <span><strong>12:30</strong></span>
+                  <span><strong>Location:</strong> 장소</span>
+                  <span><strong>Category:</strong> 스포츠</span>
+                </p>
+                <p class="card-description">
+                  Beginner-level soccer match. Equipment provided.
+                </p>
+                <a href="event_view.html?id=1" class="btn btn-primary"
+                  >Join the event 신청가능</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
