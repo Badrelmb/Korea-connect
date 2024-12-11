@@ -72,12 +72,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function fetchEvents() {
   try {
     const { data: events, error } = await supabase.from("events").select("*");
-
+    console.log("Fetched events from DB:", events); // Check the fetched events
     if (error) {
       console.error("Error fetching events:", error);
       return [];
     }
-
     return events;
   } catch (error) {
     console.error("Unexpected error fetching events:", error);
@@ -85,31 +84,32 @@ async function fetchEvents() {
   }
 }
 
+
 // Display events
 function displayEvents(events) {
-  const eventsSection = document.getElementById("events-list"); // Updated to match the HTML ID
+  console.log("Rendering events:", events); // Log events being rendered
+  const eventsSection = document.querySelector(".events-section .row");
   eventsSection.innerHTML = ""; // Clear existing events
 
   events.forEach((event) => {
     const eventCard = `
-      <div class="card mb-4" style="width: 100%">
-        <div class="card-body">
-          <h5 class="card-title">${event.title}</h5>
-          <p class="card-text event-details">
-            <span><strong>${new Date(event.event_time).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}</strong></span>
-            <span><strong>Location:</strong> ${event.location}</span>
-            <span><strong>Category:</strong> ${event.category}</span>
-          </p>
-          <p class="card-description">${event.description}</p>
-          <a
-            href="event_view.html?id=${event.id}"
-            class="btn btn-primary"
-          >
-            Event available | 신청가능
-          </a>
+      <div class="col-md-4">
+        <div class="card mb-4" style="width: 100%">
+          <div class="card-body">
+            <h5 class="card-title">${event.title}</h5>
+            <p class="card-text event-details">
+              <span><strong>${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></span>
+              <span><strong>Location:</strong> ${event.location}</span>
+              <span><strong>Category:</strong> ${event.category}</span>
+            </p>
+            <p class="card-description">${event.description}</p>
+            <a
+              href="event_view.html?id=${event.id}"
+              class="btn btn-primary"
+            >
+              Event available | 신청가능
+            </a>
+          </div>
         </div>
       </div>
     `;
@@ -117,19 +117,21 @@ function displayEvents(events) {
   });
 }
 
+
 // Filter events based on criteria
 function filterEvents(events, selectedCity, selectedCategory, selectedDate) {
-  return events.filter((event) => {
+  const filteredEvents = events.filter((event) => {
     const matchesCity = selectedCity === "모든" || event.location === selectedCity;
-    const matchesCategory =
-      selectedCategory === "모든" || event.category === selectedCategory;
+    const matchesCategory = selectedCategory === "모든" || event.category === selectedCategory;
     const matchesDate =
-      !selectedDate ||
-      new Date(event.event_date).toDateString() ===
-        new Date(selectedDate).toDateString();
+      !selectedDate || new Date(event.event_date).toDateString() === new Date(selectedDate).toDateString();
 
     return matchesCity && matchesCategory && matchesDate;
   });
+
+  console.log("Filtered events:", filteredEvents); // Log filtered events
+  return filteredEvents;
 }
+
 
 
