@@ -22,49 +22,51 @@ document.addEventListener("DOMContentLoaded", async function () {
     const user = session.user;
     console.log("Logged-in user:", user);
 
-    displayUserProfile(user);
+    // Commented out displayUserProfile for now
+    // displayUserProfile(user);
 
-    // Fetch and display events initially
+    // Fetch and display events
     const events = await fetchEvents();
-    console.log("Fetched events:", events);
-    displayEvents(events);
+    console.log("Fetched events:", events); // Check fetched events
+    displayEvents(events); // Temporarily render all events without filtering
 
-    // Listen for filter changes from the dropdown script
-//   document.addEventListener("filtersChanged", (e) => {
-//   const { selectedCity, selectedCategory, selectedDate } = e.detail;
-//   console.log("Filters received in my_event.js:", {
-//     selectedCity,
-//     selectedCategory,
-//     selectedDate,
-//   });
+    // Commenting out filtersChanged listener for debugging
+    /*
+    document.addEventListener("filtersChanged", (e) => {
+      const { selectedCity, selectedCategory, selectedDate } = e.detail;
+      console.log("Filters received in my_event.js:", {
+        selectedCity,
+        selectedCategory,
+        selectedDate,
+      });
 
-//   const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
-//   displayEvents(filteredEvents);
-// });
-
-//   } catch (err) {
-//     console.error("Error during page load:", err);
-//   }
-
-  // Handle Logout Button
-  const logoutButton = document.querySelector(".logout-btn");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        console.error("Error signing out:", error);
-      } else {
-        window.location.href = "login.html";
-      }
+      const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
+      displayEvents(filteredEvents);
     });
-  }
+    */
 
-  // Handle Create Event Button
-  const createEventButton = document.getElementById("create-event-btn");
-  if (createEventButton) {
-    createEventButton.addEventListener("click", () => {
-      window.location.href = "event_create.html";
-    });
+    // Handle Logout Button
+    const logoutButton = document.querySelector(".logout-btn");
+    if (logoutButton) {
+      logoutButton.addEventListener("click", async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+          console.error("Error signing out:", error);
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+    }
+
+    // Handle Create Event Button
+    const createEventButton = document.getElementById("create-event-btn");
+    if (createEventButton) {
+      createEventButton.addEventListener("click", () => {
+        window.location.href = "event_create.html";
+      });
+    }
+  } catch (err) {
+    console.error("Error during page load:", err);
   }
 });
 
@@ -72,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function fetchEvents() {
   try {
     const { data: events, error } = await supabase.from("events").select("*");
-    console.log("Fetched events from DB:", events); // Check the fetched events
+    console.log("Fetched events from DB:", events); // Log fetched events
     if (error) {
       console.error("Error fetching events:", error);
       return [];
@@ -84,14 +86,20 @@ async function fetchEvents() {
   }
 }
 
-
 // Display events
 function displayEvents(events) {
-  console.log("Rendering events:", events); // Log events being rendered
   const eventsSection = document.querySelector(".events-section .row");
+  console.log("Events section:", eventsSection); // Log DOM section
   eventsSection.innerHTML = ""; // Clear existing events
 
+  if (!events || events.length === 0) {
+    console.log("No events to display.");
+    eventsSection.innerHTML = "<p>No events found.</p>";
+    return;
+  }
+
   events.forEach((event) => {
+    console.log("Rendering event:", event); // Log each event
     const eventCard = `
       <div class="col-md-4">
         <div class="card mb-4" style="width: 100%">
@@ -117,7 +125,6 @@ function displayEvents(events) {
   });
 }
 
-
 // Filter events based on criteria
 function filterEvents(events, selectedCity, selectedCategory, selectedDate) {
   const filteredEvents = events.filter((event) => {
@@ -132,6 +139,3 @@ function filterEvents(events, selectedCity, selectedCategory, selectedDate) {
   console.log("Filtered events:", filteredEvents); // Log filtered events
   return filteredEvents;
 }
-
-
-
