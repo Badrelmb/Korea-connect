@@ -10,6 +10,12 @@ const translations = {
     "Max Participants": "Max Participants",
     "Event Description": "Event Description",
     "Create Event": "Create Event",
+    "스포츠": "Sports",
+    "음악": "Music",
+    "미술": "Art",
+    "요리": "Cooking",
+    "여행": "Travel",
+    "언어 교환": "Language Exchange",
   },
   kr: {
     "Create Your Event": "이벤트 만들기",
@@ -19,8 +25,15 @@ const translations = {
     "Max Participants": "최대 참여 인원",
     "Event Description": "이벤트 설명",
     "Create Event": "이벤트 만들기",
+    "스포츠": "스포츠",
+    "음악": "음악",
+    "미술": "미술",
+    "요리": "요리",
+    "여행": "여행",
+    "언어 교환": "언어 교환",
   },
 };
+
 
 // Set default language (English)
 let currentLanguage = "en";
