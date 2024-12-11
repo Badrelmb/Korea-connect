@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Fetch and display events initially
   const events = await fetchEvents();
+  console.log("Fetched events:", events);
   displayEvents(events);
 
   // Listen for filter changes from the dropdown script
@@ -54,7 +55,7 @@ console.log("Fetched events:", events);
 }
 
 // Display events
- function displayEvents(events) {
+function displayEvents(events) {
   const eventsSection = document.getElementById("events-list");
   eventsSection.innerHTML = ""; // Clear existing events
 
@@ -73,9 +74,11 @@ console.log("Fetched events:", events);
         </div>
       </div>
     `;
+    console.log("Rendering card:", eventCard); // Log each card
     eventsSection.insertAdjacentHTML("beforeend", eventCard);
   });
 }
+
 
 
 
