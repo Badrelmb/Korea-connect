@@ -74,3 +74,5 @@ async function joinEvent(eventId) {
 
   alert("Successfully joined the event!");
 }
+
+window.joinEvent = joinEvent;
