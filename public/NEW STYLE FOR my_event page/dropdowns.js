@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedCity = e.target.textContent;
       regionBtn.innerHTML = `${selectedCity} <span class="dropdown-icon">▼</span>`;
       regionMenu.style.display = "none";
-      document.dispatchEvent(new CustomEvent("filtersChanged", { detail: { selectedCity, selectedCategory, selectedDate } }));
+      emitFiltersChanged();
     }
   });
 
@@ -43,13 +43,22 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedCategory = e.target.textContent;
       categoryBtn.innerHTML = `${selectedCategory} <span class="dropdown-icon">▼</span>`;
       categoryMenu.style.display = "none";
-      document.dispatchEvent(new CustomEvent("filtersChanged", { detail: { selectedCity, selectedCategory, selectedDate } }));
+      emitFiltersChanged();
     }
   });
 
   // Listen for date changes to update `selectedDate`
   document.addEventListener("dateChanged", (e) => {
     selectedDate = e.detail.selectedDate;
-    document.dispatchEvent(new CustomEvent("filtersChanged", { detail: { selectedCity, selectedCategory, selectedDate } }));
+    emitFiltersChanged();
   });
+
+  // Emit filtersChanged event
+  function emitFiltersChanged() {
+    document.dispatchEvent(
+      new CustomEvent("filtersChanged", {
+        detail: { selectedCity, selectedCategory, selectedDate },
+      })
+    );
+  }
 });
