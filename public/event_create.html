@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Event - Korea Connect</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script type="module" src="createEvent.js"></script>
     <style>
       /* Reset some default styles */
       body,
@@ -116,10 +117,10 @@
         background-color: transparent;
       }
 
-        #header .logo img {
-            height: 100px;
-            cursor: pointer;
-        }
+      #header .logo img {
+        height: 100px;
+        cursor: pointer;
+      }
 
       nav ul {
         list-style: none;
@@ -175,22 +176,29 @@
   </head>
   <body>
     <div class="hero-section">
-        <!-- Header Section -->
-        <header id="header">
-            <div class="logo">
-                <!-- Wrap the logo in an anchor tag to make it clickable and go to index.html -->
-                <a href="index.html">
-                    <img src="/KOREA-CONNECT IMG/logo_transparent.png" alt="Korea Connect Logo" />
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#" id="language-toggle" class="language-toggle">EN | KR</a></li>
-                    <hr>
-                    <hr>
-                </ul>
-            </nav>
-        </header>
+      <!-- Header Section -->
+      <header id="header">
+        <div class="logo">
+          <!-- Wrap the logo in an anchor tag to make it clickable and go to index.html -->
+          <a href="index.html">
+            <img
+              src="/KOREA-CONNECT IMG/logo_transparent.png"
+              alt="Korea Connect Logo"
+            />
+          </a>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#" id="language-toggle" class="language-toggle"
+                >EN | KR</a
+              >
+            </li>
+            <hr />
+            <hr />
+          </ul>
+        </nav>
+      </header>
 
       <!-- Event Create Form -->
       <div class="form-container">
@@ -280,91 +288,5 @@
         </form>
       </div>
     </div>
-
-    <!-- Language Toggle Script -->
-    <script>
-      // Define translations for English and Korean
-      const translations = {
-        en: {
-          "Create Your Event": "Create Your Event",
-          "Event Title": "Event Title",
-          "Hobby Category": "Hobby Category",
-          "Event Location": "Event Location",
-          "Max Participants": "Max Participants",
-          "Event Description": "Event Description",
-          "Create Event": "Create Event",
-        },
-        kr: {
-          "Create Your Event": "이벤트 만들기",
-          "Event Title": "이벤트 제목",
-          "Hobby Category": "취미 카테고리",
-          "Event Location": "이벤트 위치",
-          "Max Participants": "최대 참여 인원",
-          "Event Description": "이벤트 설명",
-          "Create Event": "이벤트 만들기",
-        },
-      };
-
-      // Set default language (English)
-      let currentLanguage = "en";
-
-      // Function to toggle between languages
-      function toggleLanguage() {
-        currentLanguage = currentLanguage === "en" ? "kr" : "en"; // Switch language
-
-        // Update text on page
-        document.querySelectorAll("[data-text]").forEach((element) => {
-          const key = element.getAttribute("data-text");
-          if (translations[currentLanguage][key]) {
-            element.innerText = translations[currentLanguage][key];
-          }
-        });
-
-        // Change language toggle button text
-        const toggleButton = document.getElementById("language-toggle");
-        toggleButton.innerText =
-          currentLanguage === "en" ? "EN | KR" : "KR | EN";
-      }
-
-      // Add event listener to language toggle button
-      document
-        .getElementById("language-toggle")
-        .addEventListener("click", toggleLanguage);
-
-      //Handling event creation POST
-      document
-        .querySelector("form")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault(); // Prevent the default form submission
-
-          // Collect form data
-          const form = event.target;
-          const formData = new FormData(form); // Using FormData for handling file uploads
-
-          try {
-            // Send a POST request to the server
-            const response = await fetch("http://localhost:4000/create-event", {
-              method: "POST",
-              body: formData, // Send the form data
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-              // Display success message
-              alert(result.message);
-
-              // Redirect to the events page or clear the form
-              window.location.href = "my_event.html"; // Redirect to the events page
-            } else {
-              // Display error message
-              alert(result.message);
-            }
-          } catch (error) {
-            console.error("Error:", error);
-            alert("Error creating the event. Please try again.");
-          }
-        });
-    </script>
   </body>
 </html>
