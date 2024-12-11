@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       />
       <h1>${event.title}</h1>
       <p class="event-details">Date: ${new Date(event.event_date).toLocaleDateString()}</p>
-      <p class="event-details">Time: ${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+      <p class="event-details">Time: ${event.event_time.slice(0, 5)} (24-hour format)</p>
       <p class="event-details">${event.description}</p>
       <p class="event-details">Location: ${event.location}</p>
       <a href="event_register.html?id=${event.id}" class="register-button">Join</a>

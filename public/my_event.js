@@ -89,8 +89,8 @@ function displayEvents(events) {
     <div class="card mb-4" style="width: 100%">
       <div class="card-body">
         <h5 class="card-title">${event.title}</h5>
-        <p class="card-text event-details">
-          <span><strong>${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></span>
+        <p class="event-details">Date: ${new Date(event.event_date).toLocaleDateString()}</p>
+  <p class="event-details">Time: ${event.event_time.slice(0, 5)} (24-hour format)</p>
           <span><strong>Location:</strong> ${event.location}</span>
           <span><strong>Category:</strong> ${event.category}</span>
         </p>
