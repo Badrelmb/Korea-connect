@@ -30,16 +30,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayEvents(events);
 
     // Listen for filter changes from the dropdown script
-    document.addEventListener("filtersChanged", (e) => {
-      const { selectedCity, selectedCategory, selectedDate } = e.detail;
-      const filteredEvents = filterEvents(
-        events,
-        selectedCity,
-        selectedCategory,
-        selectedDate
-      );
-      displayEvents(filteredEvents);
-    });
+  document.addEventListener("filtersChanged", (e) => {
+  const { selectedCity, selectedCategory, selectedDate } = e.detail;
+  console.log("Filters received in my_event.js:", {
+    selectedCity,
+    selectedCategory,
+    selectedDate,
+  });
+
+  const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
+  displayEvents(filteredEvents);
+});
+
   } catch (err) {
     console.error("Error during page load:", err);
   }
@@ -129,3 +131,5 @@ function filterEvents(events, selectedCity, selectedCategory, selectedDate) {
     return matchesCity && matchesCategory && matchesDate;
   });
 }
+
+

@@ -55,10 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Emit filtersChanged event
   function emitFiltersChanged() {
-    document.dispatchEvent(
-      new CustomEvent("filtersChanged", {
-        detail: { selectedCity, selectedCategory, selectedDate },
-      })
-    );
-  }
+  const detail = { selectedCity, selectedCategory, selectedDate };
+  console.log("Filters Changed:", detail); // Log the emitted filters
+  document.dispatchEvent(new CustomEvent("filtersChanged", { detail }));
+}
+
 });
