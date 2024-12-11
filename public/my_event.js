@@ -30,21 +30,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayEvents(events);
 
     // Listen for filter changes from the dropdown script
-  document.addEventListener("filtersChanged", (e) => {
-  const { selectedCity, selectedCategory, selectedDate } = e.detail;
-  console.log("Filters received in my_event.js:", {
-    selectedCity,
-    selectedCategory,
-    selectedDate,
-  });
+//   document.addEventListener("filtersChanged", (e) => {
+//   const { selectedCity, selectedCategory, selectedDate } = e.detail;
+//   console.log("Filters received in my_event.js:", {
+//     selectedCity,
+//     selectedCategory,
+//     selectedDate,
+//   });
 
-  const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
-  displayEvents(filteredEvents);
-});
+//   const filteredEvents = filterEvents(events, selectedCity, selectedCategory, selectedDate);
+//   displayEvents(filteredEvents);
+// });
 
-  } catch (err) {
-    console.error("Error during page load:", err);
-  }
+//   } catch (err) {
+//     console.error("Error during page load:", err);
+//   }
 
   // Handle Logout Button
   const logoutButton = document.querySelector(".logout-btn");
