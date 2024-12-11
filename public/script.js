@@ -20,65 +20,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-const textArray = [
-  "Join exciting events.",
-  "Connect with locals and expats.",
-  "Create lasting memories."
-];
-let typingSpeed = 100; // Speed of typing
-let erasingSpeed = 50; // Speed of erasing
-let delayBetweenTexts = 1000; // Delay before next text starts
-let textIndex = 0;
-let charIndex = 0;
-
-const typingTextElement = document.querySelector(".typing-text");
-// const cursorElement = document.querySelector(".cursor");
-
-if (typingTextElement) {
-  const textArray = [
-    "Join exciting events.",
-    "Connect with locals and expats.",
-    "Create lasting memories."
-  ];
-  let typingSpeed = 100; // Speed of typing
-  let erasingSpeed = 50; // Speed of erasing
-  let delayBetweenTexts = 1000; // Delay before next text starts
-  let textIndex = 0;
-  let charIndex = 0;
-
-  function type() {
-    if (charIndex < textArray[textIndex].length) {
-      typingTextElement.textContent += textArray[textIndex].charAt(charIndex);
-      charIndex++;
-      setTimeout(type, typingSpeed);
-    } else {
-      setTimeout(erase, delayBetweenTexts);
-    }
-  }
-
-  function erase() {
-    if (charIndex > 0) {
-      typingTextElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
-      charIndex--;
-      setTimeout(erase, erasingSpeed);
-    } else {
-      textIndex++;
-      if (textIndex >= textArray.length) textIndex = 0;
-      setTimeout(type, typingSpeed);
-    }
-  }
-
-  type(); // Start the typing effect
-} else {
-  console.error("typingTextElement not found in the DOM.");
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(type, delayBetweenTexts);
-});
-
-
-
 window.addEventListener('scroll', function() {
   const header = document.getElementById('header');
   if (window.scrollY > 50) {
