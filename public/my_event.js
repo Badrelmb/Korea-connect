@@ -55,24 +55,21 @@ console.log("Fetched events:", events);
 
 // Display events
  function displayEvents(events) {
- const eventsSection = document.getElementById("events-list");
-
+  const eventsSection = document.getElementById("events-list");
   eventsSection.innerHTML = ""; // Clear existing events
 
   events.forEach((event) => {
     const eventCard = `
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title">${event.title}</h5>
-            <p class="card-text event-details">
-              <span><strong>${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></span>
-              <span><strong>Location:</strong> ${event.location}</span>
-              <span><strong>Category:</strong> ${event.category}</span>
-            </p>
-            <p class="card-description">${event.description}</p>
-            <a href="event_view.html?id=${event.id}" class="btn btn-primary">신청가능</a>
-          </div>
+      <div class="card mb-4" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">${event.title}</h5>
+          <p class="card-text event-details">
+            <span><strong>${new Date(event.event_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></span>
+            <span><strong>Location:</strong> ${event.location}</span>
+            <span><strong>Category:</strong> ${event.category}</span>
+          </p>
+          <p class="card-description">${event.description}</p>
+          <a href="event_view.html?id=${event.id}" class="btn btn-primary">신청가능</a>
         </div>
       </div>
     `;

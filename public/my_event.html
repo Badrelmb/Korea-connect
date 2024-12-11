@@ -221,23 +221,20 @@
       <div class="container">
         <div class="row" id="events-list">
           <!-- Event cards will be dynamically injected here -->
-          <!-- Example of a single event card -->
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Event Title</h5>
-                <p class="card-text event-details">
-                  <span><strong>12:30</strong></span>
-                  <span><strong>Location:</strong> 장소</span>
-                  <span><strong>Category:</strong> 스포츠</span>
-                </p>
-                <p class="card-description">
-                  Beginner-level soccer match. Equipment provided.
-                </p>
-                <a href="event_view.html?id=1" class="btn btn-primary"
-                  >Join the event 신청가능</a
-                >
-              </div>
+          <div class="card mb-4" style="width: 100%">
+            <div class="card-body">
+              <h5 class="card-title">[Event Title from DB]</h5>
+              <p class="card-text event-details">
+                <span><strong>[Event Time]</strong></span>
+                <span><strong>Location:</strong> [Event Location from DB]</span>
+                <span><strong>Category:</strong> [Event Category from DB]</span>
+              </p>
+              <p class="card-description">[Event Description from DB]</p>
+              <a
+                href="event_view.html?id=[Event ID from DB]"
+                class="btn btn-primary"
+                >Event available | 신청가능</a
+              >
             </div>
           </div>
         </div>
