@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function fetchEvents() {
   try {
     const { data: events, error } = await supabase.from("events").select("*");
+console.log("Fetched events:", events);
 
     if (error) {
       console.error("Error fetching events:", error);
@@ -54,7 +55,8 @@ async function fetchEvents() {
 
 // Display events
  function displayEvents(events) {
-  const eventsSection = document.querySelector(".events-section .row");
+ const eventsSection = document.getElementById("events-list");
+
   eventsSection.innerHTML = ""; // Clear existing events
 
   events.forEach((event) => {
