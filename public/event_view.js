@@ -90,7 +90,7 @@ async function joinEvent(eventId) {
       return;
     }
 
-    const userId = session.auth.user.id;
+    const userId = session.user.id;
 
     // Insert the event-user relationship into the eventsJoined table
     const { data, error: insertError } = await supabase
